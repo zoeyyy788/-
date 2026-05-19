@@ -1,4 +1,3 @@
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -546,6 +545,53 @@ html,body{
   .bottom-nav{height:calc(64px + env(safe-area-inset-bottom));}
 }
 
+
+
+/* ── MVP 기능 화면: 기록 / 리포트 / 상점 ── */
+.app-screen{background:#f7f4ee;min-height:0;}
+.app-header{padding:max(54px,calc(env(safe-area-inset-top)+16px)) 20px 14px;background:#fff;border-bottom:1px solid #ede8e0;flex-shrink:0;}
+.app-title{font-size:20px;font-weight:700;color:#2a3020;margin-bottom:4px;}
+.app-sub{font-size:13px;color:#8a8070;line-height:1.5;font-weight:300;}
+.app-scroll{flex:1;overflow-y:auto;padding:16px 18px calc(96px + env(safe-area-inset-bottom));}
+.section-label{font-size:11px;color:#a8a098;letter-spacing:1.6px;margin:6px 0 10px;font-weight:600;}
+.record-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px;}
+.record-emotion{border:1.5px solid #e8e0d0;background:#fff;border-radius:18px;padding:16px 10px;text-align:center;cursor:pointer;transition:all .18s;}
+.record-emotion:active{transform:scale(.97);}
+.record-emotion.selected{border-color:#6a9a5a;background:#f2f8ee;box-shadow:0 4px 14px rgba(106,154,90,.12);}
+.record-emotion.ocean.selected{border-color:#4a9bc0;background:#eef9ff;box-shadow:0 4px 14px rgba(74,155,192,.12);}
+.record-emoji{font-size:28px;margin-bottom:6px;}
+.record-name{font-size:14px;font-weight:700;color:#2a3020;margin-bottom:3px;}
+.record-help{font-size:10px;color:#9a9080;font-weight:300;}
+.intensity-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px;}
+.intensity-btn{height:48px;border-radius:16px;border:1.5px solid #e8e0d0;background:#fff;color:#6f665c;font-size:13px;font-weight:600;cursor:pointer;}
+.intensity-btn.selected{border-color:#6a9a5a;background:#f2f8ee;color:#4f7f40;}
+.intensity-btn.ocean.selected{border-color:#4a9bc0;background:#eef9ff;color:#23779c;}
+.memo-box{width:100%;min-height:112px;border-radius:18px;border:1.5px solid #e8e0d0;background:#fff;padding:16px;color:#2a3020;font-size:15px;line-height:1.5;outline:none;resize:none;font-family:inherit;margin-bottom:18px;}
+.memo-box:focus{border-color:#8eb47c;box-shadow:0 0 0 3px rgba(142,180,124,.12);}
+.record-summary{border-radius:18px;padding:14px 16px;background:#fff8ee;border:1px solid #efd9a8;margin-bottom:14px;color:#795f32;font-size:13px;line-height:1.55;}
+.empty-state{border-radius:22px;background:#fff;border:1px solid #ede8e0;padding:26px 20px;text-align:center;color:#80786d;}
+.empty-ico{font-size:34px;margin-bottom:10px;}
+.empty-title{font-size:16px;font-weight:700;color:#2a3020;margin-bottom:6px;}
+.empty-desc{font-size:13px;line-height:1.55;color:#8a8070;}
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px;}
+.stat-card{border-radius:18px;background:#fff;border:1px solid #ede8e0;padding:16px;}
+.stat-num{font-size:24px;font-weight:750;color:#4f7f40;margin-bottom:4px;}
+.stat-label{font-size:11px;color:#9a9080;line-height:1.4;}
+.report-list{border-radius:20px;background:#fff;border:1px solid #ede8e0;overflow:hidden;margin-bottom:14px;}
+.report-row{display:flex;align-items:center;gap:10px;padding:13px 15px;border-bottom:1px solid #f0ece5;}
+.report-row:last-child{border-bottom:none;}
+.report-row .emoji{font-size:20px;width:26px;text-align:center;}
+.report-row .txt{flex:1;font-size:13px;color:#3a4a30;font-weight:600;}
+.report-row .cnt{font-size:12px;color:#8a8070;}
+.shop-item{display:flex;align-items:center;gap:13px;background:#fff;border:1px solid #ede8e0;border-radius:18px;padding:14px;margin-bottom:10px;}
+.shop-icon{width:46px;height:46px;border-radius:15px;display:flex;align-items:center;justify-content:center;background:#f2f8ee;font-size:24px;flex-shrink:0;}
+.shop-info{flex:1;}
+.shop-name{font-size:14px;font-weight:700;color:#2a3020;margin-bottom:3px;}
+.shop-desc{font-size:12px;color:#8a8070;line-height:1.4;}
+.shop-price{font-size:12px;font-weight:700;color:#5a8a4a;background:#f2f8ee;border-radius:12px;padding:6px 10px;}
+.toast{position:fixed;left:18px;right:18px;bottom:calc(86px + env(safe-area-inset-bottom));background:rgba(42,48,32,.92);color:#fff;border-radius:18px;padding:14px 16px;text-align:center;font-size:14px;z-index:30;opacity:0;transform:translateY(12px);pointer-events:none;transition:all .25s;}
+.toast.show{opacity:1;transform:translateY(0);}
+
 </style>
 
 <div class="phone">
@@ -747,13 +793,10 @@ html,body{
   <div class="home-scroll">
     <div class="card">
       <div class="card-lbl">오늘의 감정 기록</div>
-      <div class="log-slots">
-        <div class="log-slot done"><div class="slot-lbl">아침</div><div class="slot-ico">🌤</div><div class="slot-val">평온</div></div>
-        <div class="log-slot"><div class="slot-lbl">저녁</div><div class="slot-ico" style="opacity:0.25;">🌙</div><div class="slot-val" style="color:#c0b8a8;font-size:11px;font-weight:300;">기록 전</div></div>
-      </div>
+      <div class="log-slots" id="today-log-slots"></div>
     </div>
-    <button class="primary-btn btn-forest" id="rec-btn">저녁 감정 기록하기</button>
-    <div class="info-card card-forest" id="mission-row" onclick="go('mission');setNav('nav-mis')">
+    <button class="primary-btn btn-forest" id="rec-btn" onclick="navTo('record')">감정 기록하기</button>
+    <div class="info-card card-forest" id="mission-row" onclick="navTo('mission')">
       <div style="font-size:20px;">✨</div>
       <div style="flex:1;">
         <div style="font-size:14px;color:#6a5a30;font-weight:500;">오늘의 미션</div>
@@ -764,17 +807,95 @@ html,body{
     <div class="point-card pc-forest" id="point-card">
       <div style="font-size:18px;">💚</div>
       <div>
-        <div style="font-size:14px;color:#3a4a30;font-weight:500;">감정 포인트 · 120p</div>
+        <div style="font-size:14px;color:#3a4a30;font-weight:500;" id="home-points">감정 포인트 · 120p</div>
         <div style="font-size:11px;color:#8aaa7a;margin-top:2px;font-weight:300;">상점에서 식물·물고기 구매 가능</div>
       </div>
     </div>
   </div>
   <div class="bottom-nav" id="bnav-home">
-    <button class="nav-btn af" id="nav-home" onclick="showHome()"><i class="ti ti-trees" aria-hidden="true"></i><span>홈</span></button>
-    <button class="nav-btn" id="nav-rec"><i class="ti ti-pencil" aria-hidden="true"></i><span>기록</span></button>
-    <button class="nav-btn" id="nav-mis" onclick="go('mission');setNav('nav-mis')"><i class="ti ti-sparkles" aria-hidden="true"></i><span>미션</span></button>
-    <button class="nav-btn" id="nav-rep"><i class="ti ti-chart-bar" aria-hidden="true"></i><span>리포트</span></button>
-    <button class="nav-btn" id="nav-shop"><i class="ti ti-seedling" aria-hidden="true"></i><span>상점</span></button>
+    <button class="nav-btn" data-nav="home" onclick="navTo('home')"><i class="ti ti-trees" aria-hidden="true"></i><span>홈</span></button>
+    <button class="nav-btn" data-nav="record" onclick="navTo('record')"><i class="ti ti-pencil" aria-hidden="true"></i><span>기록</span></button>
+    <button class="nav-btn" data-nav="mission" onclick="navTo('mission')"><i class="ti ti-sparkles" aria-hidden="true"></i><span>미션</span></button>
+    <button class="nav-btn" data-nav="report" onclick="navTo('report')"><i class="ti ti-chart-bar" aria-hidden="true"></i><span>리포트</span></button>
+    <button class="nav-btn" data-nav="shop" onclick="navTo('shop')"><i class="ti ti-seedling" aria-hidden="true"></i><span>상점</span></button>
+  </div>
+</div>
+
+<!-- ── RECORD ── -->
+<div class="screen app-screen" id="record">
+  <div class="app-header">
+    <div class="app-title">오늘의 감정 기록</div>
+    <div class="app-sub">지금 마음을 고르면 숲이 조금씩 자라요</div>
+  </div>
+  <div class="app-scroll">
+    <div class="section-label">감정 선택</div>
+    <div class="record-grid" id="record-emotion-grid">
+      <button class="record-emotion" data-emotion="평온" onclick="selectRecordEmotion(this)"><div class="record-emoji">😌</div><div class="record-name">평온</div><div class="record-help">잔잔하고 안정적인</div></button>
+      <button class="record-emotion" data-emotion="기쁨" onclick="selectRecordEmotion(this)"><div class="record-emoji">😊</div><div class="record-name">기쁨</div><div class="record-help">밝고 가벼운</div></button>
+      <button class="record-emotion" data-emotion="설렘" onclick="selectRecordEmotion(this)"><div class="record-emoji">🤩</div><div class="record-name">설렘</div><div class="record-help">기대되고 두근거리는</div></button>
+      <button class="record-emotion" data-emotion="감사" onclick="selectRecordEmotion(this)"><div class="record-emoji">🙏</div><div class="record-name">감사</div><div class="record-help">따뜻하고 충만한</div></button>
+      <button class="record-emotion" data-emotion="불안" onclick="selectRecordEmotion(this)"><div class="record-emoji">😰</div><div class="record-name">불안</div><div class="record-help">마음이 복잡한</div></button>
+      <button class="record-emotion" data-emotion="무기력" onclick="selectRecordEmotion(this)"><div class="record-emoji">😶</div><div class="record-name">무기력</div><div class="record-help">힘이 빠진</div></button>
+    </div>
+
+    <div class="section-label">강도 선택</div>
+    <div class="intensity-row">
+      <button class="intensity-btn" data-intensity="1" onclick="selectIntensity(this)">약하게</button>
+      <button class="intensity-btn" data-intensity="2" onclick="selectIntensity(this)">보통</button>
+      <button class="intensity-btn" data-intensity="3" onclick="selectIntensity(this)">강하게</button>
+    </div>
+
+    <div class="section-label">한 줄 메모 선택</div>
+    <textarea class="memo-box" id="record-memo" placeholder="오늘 마음을 한 줄로 남겨볼까요?
+예: 오늘은 생각보다 괜찮았다"></textarea>
+
+    <div class="record-summary" id="record-summary">감정과 강도를 선택하면 기록할 수 있어요.</div>
+    <button class="primary-btn btn-forest" id="record-submit" disabled onclick="submitRecord()">기록 저장하기</button>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-btn" data-nav="home" onclick="navTo('home')"><i class="ti ti-trees"></i><span>홈</span></button>
+    <button class="nav-btn" data-nav="record" onclick="navTo('record')"><i class="ti ti-pencil"></i><span>기록</span></button>
+    <button class="nav-btn" data-nav="mission" onclick="navTo('mission')"><i class="ti ti-sparkles"></i><span>미션</span></button>
+    <button class="nav-btn" data-nav="report" onclick="navTo('report')"><i class="ti ti-chart-bar"></i><span>리포트</span></button>
+    <button class="nav-btn" data-nav="shop" onclick="navTo('shop')"><i class="ti ti-seedling"></i><span>상점</span></button>
+  </div>
+</div>
+
+<!-- ── REPORT ── -->
+<div class="screen app-screen" id="report">
+  <div class="app-header">
+    <div class="app-title">감정 리포트</div>
+    <div class="app-sub">최근 기록을 바탕으로 마음의 흐름을 보여드려요</div>
+  </div>
+  <div class="app-scroll" id="report-content"></div>
+  <div class="bottom-nav">
+    <button class="nav-btn" data-nav="home" onclick="navTo('home')"><i class="ti ti-trees"></i><span>홈</span></button>
+    <button class="nav-btn" data-nav="record" onclick="navTo('record')"><i class="ti ti-pencil"></i><span>기록</span></button>
+    <button class="nav-btn" data-nav="mission" onclick="navTo('mission')"><i class="ti ti-sparkles"></i><span>미션</span></button>
+    <button class="nav-btn" data-nav="report" onclick="navTo('report')"><i class="ti ti-chart-bar"></i><span>리포트</span></button>
+    <button class="nav-btn" data-nav="shop" onclick="navTo('shop')"><i class="ti ti-seedling"></i><span>상점</span></button>
+  </div>
+</div>
+
+<!-- ── SHOP ── -->
+<div class="screen app-screen" id="shop">
+  <div class="app-header">
+    <div class="app-title">감정 상점</div>
+    <div class="app-sub">모은 포인트로 나의 공간을 꾸밀 수 있어요</div>
+  </div>
+  <div class="app-scroll">
+    <div class="record-summary" id="shop-point-summary">보유 포인트 120p</div>
+    <div class="shop-item"><div class="shop-icon">🌼</div><div class="shop-info"><div class="shop-name">작은 들꽃</div><div class="shop-desc">숲 가장자리에 작은 꽃이 피어나요</div></div><div class="shop-price">80p</div></div>
+    <div class="shop-item"><div class="shop-icon">✨</div><div class="shop-info"><div class="shop-name">햇살 조각</div><div class="shop-desc">공간에 따뜻한 빛을 더해요</div></div><div class="shop-price">120p</div></div>
+    <div class="shop-item"><div class="shop-icon">🪸</div><div class="shop-info"><div class="shop-name">부드러운 산호</div><div class="shop-desc">바다 공간에 색감을 더해요</div></div><div class="shop-price">120p</div></div>
+    <div class="empty-state" style="margin-top:12px;"><div class="empty-ico">🛍️</div><div class="empty-title">구매 기능은 준비중</div><div class="empty-desc">1차 MVP에서는 포인트를 모으는 경험까지만 테스트해요.</div></div>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-btn" data-nav="home" onclick="navTo('home')"><i class="ti ti-trees"></i><span>홈</span></button>
+    <button class="nav-btn" data-nav="record" onclick="navTo('record')"><i class="ti ti-pencil"></i><span>기록</span></button>
+    <button class="nav-btn" data-nav="mission" onclick="navTo('mission')"><i class="ti ti-sparkles"></i><span>미션</span></button>
+    <button class="nav-btn" data-nav="report" onclick="navTo('report')"><i class="ti ti-chart-bar"></i><span>리포트</span></button>
+    <button class="nav-btn" data-nav="shop" onclick="navTo('shop')"><i class="ti ti-seedling"></i><span>상점</span></button>
   </div>
 </div>
 
@@ -835,13 +956,15 @@ html,body{
     </div>
   </div>
   <div class="bottom-nav">
-    <button class="nav-btn" onclick="showHome()"><i class="ti ti-trees" aria-hidden="true"></i><span>홈</span></button>
-    <button class="nav-btn"><i class="ti ti-pencil" aria-hidden="true"></i><span>기록</span></button>
-    <button class="nav-btn af"><i class="ti ti-sparkles" aria-hidden="true"></i><span>미션</span></button>
-    <button class="nav-btn"><i class="ti ti-chart-bar" aria-hidden="true"></i><span>리포트</span></button>
-    <button class="nav-btn"><i class="ti ti-seedling" aria-hidden="true"></i><span>상점</span></button>
+    <button class="nav-btn" data-nav="home" onclick="navTo('home')"><i class="ti ti-trees" aria-hidden="true"></i><span>홈</span></button>
+    <button class="nav-btn" data-nav="record" onclick="navTo('record')"><i class="ti ti-pencil" aria-hidden="true"></i><span>기록</span></button>
+    <button class="nav-btn" data-nav="mission" onclick="navTo('mission')"><i class="ti ti-sparkles" aria-hidden="true"></i><span>미션</span></button>
+    <button class="nav-btn" data-nav="report" onclick="navTo('report')"><i class="ti ti-chart-bar" aria-hidden="true"></i><span>리포트</span></button>
+    <button class="nav-btn" data-nav="shop" onclick="navTo('shop')"><i class="ti ti-seedling" aria-hidden="true"></i><span>상점</span></button>
   </div>
 </div>
+
+<div class="toast" id="toast"></div>
 
 </div>
 
@@ -861,14 +984,81 @@ var emotionMap={
   ocean:{평온:{icon:'🐠',name:'흰동가리 치어'},기쁨:{icon:'🐡',name:'복어 치어'},설렘:{icon:'🦋',name:'나비고기 치어'},감사:{icon:'🪼',name:'해파리 치어'},불안:{icon:'🐟',name:'열대어 치어'},무기력:{icon:'🐠',name:'흰동가리 치어'}}
 };
 
-function go(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});document.getElementById(id).classList.add('active');}
+
+
+var STORAGE_KEY='mureok_mvp_state_v1';
+var recordDraft={emotion:'',intensity:0};
+var appState={
+  onboardingDone:false,
+  userName:'',
+  ageGroup:'',
+  spaceType:'forest',
+  selectedEmotion:'평온',
+  points:120,
+  growthLevel:1,
+  logs:[],
+  completedMissions:{},
+  lastScreen:'home'
+};
+
+function todayKey(){
+  var d=new Date();
+  var y=d.getFullYear();
+  var m=String(d.getMonth()+1).padStart(2,'0');
+  var day=String(d.getDate()).padStart(2,'0');
+  return y+'-'+m+'-'+day;
+}
+function makeId(prefix){return prefix+'_'+Date.now()+'_'+Math.floor(Math.random()*1000);}
+function loadState(){
+  try{
+    var saved=localStorage.getItem(STORAGE_KEY);
+    if(saved){appState=Object.assign(appState,JSON.parse(saved));}
+  }catch(e){}
+  userName=appState.userName||userName;
+  spaceType=appState.spaceType||spaceType;
+  selectedEmotion=appState.selectedEmotion||selectedEmotion||'평온';
+  pts=Number(appState.points||120);
+}
+function saveState(){
+  appState.userName=userName||appState.userName;
+  appState.spaceType=spaceType;
+  appState.selectedEmotion=selectedEmotion||appState.selectedEmotion;
+  appState.points=pts;
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(appState));}catch(e){}
+}
+function getTodayLogs(){return (appState.logs||[]).filter(function(l){return l.date===todayKey();});}
+function latestTodayLog(){var logs=getTodayLogs();return logs.length?logs[logs.length-1]:null;}
+function emotionEmoji(em){
+  return {평온:'😌',기쁨:'😊',설렘:'🤩',감사:'🙏',불안:'😰',무기력:'😶'}[em]||'🌿';
+}
+function intensityText(v){return {1:'약하게',2:'보통',3:'강하게'}[String(v)]||'보통';}
+function showToast(msg){
+  var t=document.getElementById('toast'); if(!t)return;
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer=setTimeout(function(){t.classList.remove('show');},1800);
+}
+function go(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  var target=document.getElementById(id);
+  if(target)target.classList.add('active');
+}
 function setNav(id){
+  var key=(id||'').replace('nav-','');
+  if(key==='mis')key='mission';
   document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('af','ao');});
-  var el=document.getElementById(id);
-  if(el) el.classList.add(spaceType==='ocean'?'ao':'af');
+  document.querySelectorAll('.nav-btn[data-nav="'+key+'"]').forEach(function(b){b.classList.add(spaceType==='ocean'?'ao':'af');});
+}
+function navTo(key){
+  if(key==='home'){showHome();return;}
+  if(key==='record'){openRecord();return;}
+  if(key==='mission'){go('mission');renderMission();setNav('mission');return;}
+  if(key==='report'){renderReport();go('report');setNav('report');return;}
+  if(key==='shop'){renderShop();go('shop');setNav('shop');return;}
 }
 function showHome(){
   go('home');
+  updateHome();
   var isOcean=spaceType==='ocean';
   document.getElementById('home-canvas').style.display=isOcean?'none':'block';
   document.getElementById('ocean-canvas').style.display=isOcean?'block':'none';
@@ -879,10 +1069,29 @@ function showHome(){
   document.getElementById('rec-btn').className='primary-btn '+(isOcean?'btn-ocean':'btn-forest');
   document.getElementById('mission-row').className='info-card '+(isOcean?'card-ocean':'card-forest');
   document.getElementById('point-card').className='point-card '+(isOcean?'pc-ocean':'pc-forest');
-  document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('af','ao');});
-  document.getElementById('nav-home').classList.add(isOcean?'ao':'af');
+  setNav('home');
   if(isOcean){if(!window._oi){initOcean();window._oi=true;}}
   else{if(!window._hi){initHomeForest();window._hi=true;}}
+  saveState();
+}
+function updateHome(){
+  document.getElementById('home-title').textContent=(userName||appState.userName||'나')+'의 '+(spaceType==='ocean'?'감정 바다':'감정 숲');
+  var logs=getTodayLogs();
+  var latest=latestTodayLog();
+  var slots=document.getElementById('today-log-slots');
+  if(slots){
+    if(logs.length){
+      slots.innerHTML='<div class="log-slot done"><div class="slot-lbl">오늘</div><div class="slot-ico">'+emotionEmoji(latest.emotion)+'</div><div class="slot-val">'+latest.emotion+'</div></div>'+
+      '<div class="log-slot done"><div class="slot-lbl">강도</div><div class="slot-ico">'+(latest.intensity>=3?'🔥':latest.intensity==2?'🌤':'🍃')+'</div><div class="slot-val">'+intensityText(latest.intensity)+'</div></div>';
+      document.getElementById('rec-btn').textContent='오늘 감정 다시 기록하기';
+    }else{
+      slots.innerHTML='<div class="log-slot"><div class="slot-lbl">오늘</div><div class="slot-ico" style="opacity:.35;">🌱</div><div class="slot-val" style="color:#c0b8a8;font-size:11px;font-weight:300;">기록 전</div></div>'+
+      '<div class="log-slot"><div class="slot-lbl">성장</div><div class="slot-ico" style="opacity:.35;">✨</div><div class="slot-val" style="color:#c0b8a8;font-size:11px;font-weight:300;">대기중</div></div>';
+      document.getElementById('rec-btn').textContent='감정 기록하기';
+    }
+  }
+  var hp=document.getElementById('home-points'); if(hp)hp.textContent='감정 포인트 · '+pts+'p';
+  var ms=document.getElementById('mis-pts'); if(ms)ms.textContent=pts;
 }
 function onNameInput(){
   var v=document.getElementById('name-input').value.trim();userName=v;
@@ -947,15 +1156,114 @@ function doPlant(){
   document.getElementById('plant-next').disabled=false;
 }
 function goHome(){
-  document.getElementById('home-title').textContent=(userName||'나')+'의 '+(spaceType==='ocean'?'감정 바다':'감정 숲');
+  appState.onboardingDone=true;
+  appState.userName=userName||'나';
+  appState.spaceType=spaceType;
+  appState.selectedEmotion=selectedEmotion||'평온';
+  appState.growthLevel=Math.max(1,Number(appState.growthLevel||1));
+  saveState();
   showHome();
 }
 function clearMis(id,btn,p){
-  if(btn.classList.contains('done'))return;
-  btn.classList.add('done');btn.disabled=true;btn.textContent='완료 +'+p+'p';
-  document.getElementById(id).classList.add('cleared');
-  pts+=p;document.getElementById('mis-pts').textContent=pts;
+  var d=todayKey();
+  appState.completedMissions=appState.completedMissions||{};
+  appState.completedMissions[d]=appState.completedMissions[d]||[];
+  if(appState.completedMissions[d].indexOf(id)>-1){showToast('이미 완료한 미션이에요');return;}
+  appState.completedMissions[d].push(id);
+  pts+=p;appState.points=pts;saveState();
+  renderMission();updateHome();showToast('미션 완료! +'+p+'p');
 }
+
+
+function openRecord(){
+  recordDraft={emotion:'',intensity:0};
+  document.querySelectorAll('.record-emotion').forEach(function(b){b.classList.remove('selected','ocean'); if(spaceType==='ocean')b.classList.add('ocean');});
+  document.querySelectorAll('.intensity-btn').forEach(function(b){b.classList.remove('selected','ocean'); if(spaceType==='ocean')b.classList.add('ocean');});
+  var memo=document.getElementById('record-memo'); if(memo)memo.value='';
+  var btn=document.getElementById('record-submit'); if(btn){btn.disabled=true;btn.className='primary-btn '+(spaceType==='ocean'?'btn-ocean':'btn-forest');}
+  updateRecordSummary();go('record');setNav('record');
+}
+function selectRecordEmotion(el){
+  document.querySelectorAll('.record-emotion').forEach(function(b){b.classList.remove('selected');});
+  el.classList.add('selected');
+  recordDraft.emotion=el.dataset.emotion;
+  updateRecordSummary();
+}
+function selectIntensity(el){
+  document.querySelectorAll('.intensity-btn').forEach(function(b){b.classList.remove('selected');});
+  el.classList.add('selected');
+  recordDraft.intensity=Number(el.dataset.intensity||0);
+  updateRecordSummary();
+}
+function updateRecordSummary(){
+  var summary=document.getElementById('record-summary');
+  var submit=document.getElementById('record-submit');
+  if(!summary||!submit)return;
+  if(recordDraft.emotion && recordDraft.intensity){
+    summary.textContent='오늘의 마음: '+recordDraft.emotion+' · '+intensityText(recordDraft.intensity)+'\n저장하면 감정 포인트 +10p, 성장 +1';
+    submit.disabled=false;
+  }else{
+    summary.textContent='감정과 강도를 선택하면 기록할 수 있어요.';
+    submit.disabled=true;
+  }
+}
+function submitRecord(){
+  if(!recordDraft.emotion||!recordDraft.intensity)return;
+  var memo=(document.getElementById('record-memo').value||'').trim();
+  var log={id:makeId('log'),date:todayKey(),slot:'today',emotion:recordDraft.emotion,intensity:recordDraft.intensity,memo:memo,createdAt:new Date().toISOString()};
+  appState.logs=appState.logs||[];
+  appState.logs.push(log);
+  selectedEmotion=recordDraft.emotion;
+  appState.selectedEmotion=selectedEmotion;
+  pts+=10;
+  appState.points=pts;
+  appState.growthLevel=Number(appState.growthLevel||1)+1;
+  saveState();
+  showToast('기록 완료! +10p');
+  setTimeout(function(){showHome();},450);
+}
+function renderMission(){
+  var d=todayKey();
+  var done=(appState.completedMissions&&appState.completedMissions[d])||[];
+  ['mc1','mc2','mc3','mc4'].forEach(function(id){
+    var card=document.getElementById(id); if(card)card.classList.toggle('cleared',done.indexOf(id)>-1);
+    var btn=card?card.querySelector('.mis-btn'):null;
+    if(btn){
+      if(done.indexOf(id)>-1){btn.classList.add('done');btn.disabled=true;btn.textContent='오늘 완료';}
+      else{btn.classList.remove('done');btn.disabled=false;btn.textContent='시작하기';}
+    }
+  });
+  var ms=document.getElementById('mis-pts'); if(ms)ms.textContent=pts;
+}
+function renderReport(){
+  var wrap=document.getElementById('report-content'); if(!wrap)return;
+  var logs=(appState.logs||[]).slice().sort(function(a,b){return new Date(b.createdAt)-new Date(a.createdAt);});
+  if(logs.length<1){
+    wrap.innerHTML='<div class="empty-state"><div class="empty-ico">📊</div><div class="empty-title">아직 리포트가 없어요</div><div class="empty-desc">감정을 1번 이상 기록하면 작은 리포트를 보여드릴게요.</div></div>';
+    return;
+  }
+  var now=new Date();
+  var seven=new Date(now.getFullYear(),now.getMonth(),now.getDate()-6);
+  var recent=logs.filter(function(l){return new Date(l.date+'T00:00:00')>=seven;});
+  var target=recent.length?recent:logs;
+  var counts={}; var maxIntensity=0; var strong='';
+  target.forEach(function(l){counts[l.emotion]=(counts[l.emotion]||0)+1;if(Number(l.intensity)>maxIntensity){maxIntensity=Number(l.intensity);strong=l.emotion;}});
+  var top=Object.keys(counts).sort(function(a,b){return counts[b]-counts[a];})[0];
+  var rows=Object.keys(counts).map(function(k){return '<div class="report-row"><div class="emoji">'+emotionEmoji(k)+'</div><div class="txt">'+k+'</div><div class="cnt">'+counts[k]+'회</div></div>';}).join('');
+  wrap.innerHTML='<div class="stat-grid"><div class="stat-card"><div class="stat-num">'+target.length+'</div><div class="stat-label">최근 기록 수</div></div><div class="stat-card"><div class="stat-num">'+(top||'-')+'</div><div class="stat-label">가장 많이 남긴 감정</div></div></div>'+
+  '<div class="record-summary">최근 마음은 <b>'+top+'</b> 쪽으로 가장 자주 기록됐어요. 가장 강하게 남긴 감정은 <b>'+strong+'</b>이에요.</div>'+
+  '<div class="section-label">감정별 기록</div><div class="report-list">'+rows+'</div>'+
+  '<div class="section-label">최근 기록</div><div class="report-list">'+logs.slice(0,5).map(function(l){return '<div class="report-row"><div class="emoji">'+emotionEmoji(l.emotion)+'</div><div class="txt">'+l.date+' · '+l.emotion+'</div><div class="cnt">'+intensityText(l.intensity)+'</div></div>';}).join('')+'</div>';
+}
+function renderShop(){
+  var el=document.getElementById('shop-point-summary'); if(el)el.textContent='보유 포인트 '+pts+'p';
+}
+function bootApp(){
+  loadState();
+  if(appState.onboardingDone){showHome();}
+  else{go('splash');}
+}
+window.addEventListener('DOMContentLoaded',bootApp);
 
 /* ── 나무 (차분한 세이지 팔레트) ── */
 function makeTree(x,z,h,r,v){
