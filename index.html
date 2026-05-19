@@ -1,3 +1,4 @@
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -334,6 +335,217 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Pretendard',
 }
 .mis-btn:active{transform:scale(0.97);}
 .mis-btn.done{background:#f2f8ee;border-color:#b0ccb0;color:#8aaa7a;cursor:default;}
+
+/* ── 2026 리디자인 오버라이드: iPhone 13 Pro / soft wellness forest ── */
+:root{
+  --app-h: 100dvh;
+  --cream:#fbf6ed;
+  --cream-2:#f6efe4;
+  --sage:#7fa56c;
+  --sage-deep:#4f7d47;
+  --sage-soft:#eef6e9;
+  --ink:#263321;
+  --muted:#8a947d;
+  --line:#e8dfd0;
+  --card:#fffdf8;
+  --shadow:0 10px 30px rgba(87,72,45,.08);
+}
+html,body{
+  height:var(--app-h);
+  min-height:var(--app-h);
+  overflow:hidden;
+  background:var(--cream);
+}
+.phone{
+  height:var(--app-h) !important;
+  min-height:var(--app-h);
+  background:var(--cream);
+  overflow:hidden;
+}
+.screen.active{height:var(--app-h);min-height:var(--app-h);}
+
+/* Splash를 어둡지 않은 회복 숲 톤으로 */
+#splash{background:linear-gradient(180deg,#cfe7d8 0%,#f8f1e6 100%);}
+.splash-gradient{
+  background:linear-gradient(to top,
+    rgba(251,246,237,.98) 0%,
+    rgba(251,246,237,.92) 18%,
+    rgba(251,246,237,.55) 38%,
+    rgba(251,246,237,.08) 68%,
+    transparent 100%
+  );
+}
+.splash-pill{
+  color:#6f8d62;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(127,165,108,.22);
+  box-shadow:0 8px 24px rgba(92,116,74,.08);
+}
+.splash-title{
+  color:#314327;
+  font-weight:700;
+  letter-spacing:8px;
+  text-shadow:none;
+}
+.splash-slogan{color:#728564;font-weight:400;}
+.splash-btn,.ob-next,.primary-btn{
+  background:linear-gradient(135deg,#8ab977,#5f9257) !important;
+  color:#fff;
+  box-shadow:0 10px 24px rgba(95,146,87,.22);
+}
+
+/* 온보딩 화면 밀도 개선 */
+.ob-screen{background:var(--cream);}
+.ob-header{
+  padding-left:22px;
+  padding-right:22px;
+  padding-top:max(46px,calc(env(safe-area-inset-top) + 12px));
+}
+.ob-progress{margin-bottom:22px;}
+.ob-dot{height:3px;background:#e7decf;}
+.ob-dot.done{background:#86ad72;}
+.ob-q{font-size:25px;color:var(--ink);letter-spacing:-.6px;}
+.ob-sub{font-size:14px;color:#829274;}
+.ob-body{padding:0 22px;}
+.name-field{
+  border-radius:24px;
+  border:1.5px solid #ded5c8;
+  box-shadow:0 12px 32px rgba(79,60,38,.05);
+}
+.ob-footer{
+  padding:14px 22px calc(18px + env(safe-area-inset-bottom));
+  background:linear-gradient(to top,var(--cream) 78%,rgba(251,246,237,.6));
+}
+.ob-back{border-radius:20px;background:#fffdf8;box-shadow:0 8px 20px rgba(79,60,38,.06);}
+.ob-next{height:54px;border-radius:22px;}
+
+/* 홈: iPhone 13 Pro 기준 하단 탭바 노출 우선 */
+#home{background:var(--cream);}
+.home-topbar{
+  padding:max(42px,calc(env(safe-area-inset-top) + 10px)) 18px 8px;
+  background:rgba(251,246,237,.96);
+  backdrop-filter:blur(12px);
+  z-index:2;
+}
+.home-title{
+  font-size:18px;
+  line-height:1.2;
+  color:var(--ink);
+  max-width:230px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.home-streak{
+  font-size:12px;
+  background:#fff8ea;
+  border:1px solid #edd59f;
+  box-shadow:0 6px 16px rgba(194,124,44,.08);
+}
+.scene-wrap{
+  height:206px;
+  overflow:hidden;
+  background:linear-gradient(180deg,#bdddcf 0%,#dcedc9 54%,#fbf6ed 100%);
+}
+#home-canvas,#ocean-canvas{height:206px !important;}
+.scene-fade{
+  height:76px;
+  background:linear-gradient(to top,var(--cream) 18%,rgba(251,246,237,.72) 48%,transparent 100%) !important;
+}
+.home-scroll{
+  flex:1;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  padding:8px 18px calc(96px + env(safe-area-inset-bottom));
+}
+.card{
+  background:rgba(255,253,248,.94);
+  border:1px solid rgba(232,223,208,.85);
+  border-radius:26px;
+  padding:15px;
+  margin-bottom:11px;
+  box-shadow:var(--shadow);
+}
+.card-lbl{
+  color:#90897e;
+  font-size:12px;
+  margin-bottom:11px;
+}
+.log-slots{gap:10px;}
+.log-slot{
+  border-radius:20px;
+  padding:12px 8px 11px;
+  background:#fbf8f1;
+  border:1px solid #ebe2d3;
+}
+.log-slot.done{
+  background:#f1f8ec;
+  border-color:#c9dfbd;
+}
+.slot-lbl{font-size:11px;}
+.slot-ico{font-size:18px;}
+.slot-val{font-size:14px;}
+.primary-btn{
+  height:60px;
+  border-radius:28px;
+  font-size:17px;
+  margin-bottom:12px;
+}
+.info-card,.point-card{
+  border-radius:24px;
+  padding:16px 18px;
+  margin-bottom:12px;
+  box-shadow:var(--shadow);
+}
+.card-forest{background:#fffaf0;border:1px solid #ead8b2;}
+.pc-forest{background:#f2f8ee;border:1px solid #c6ddb9;}
+
+/* 하단 탭바: 모바일 브라우저에서도 보이도록 고정 */
+.bottom-nav{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:20;
+  height:calc(70px + env(safe-area-inset-bottom));
+  padding:8px 0 calc(10px + env(safe-area-inset-bottom));
+  background:rgba(255,253,248,.96);
+  border-top:1px solid rgba(232,223,208,.9);
+  box-shadow:0 -10px 28px rgba(64,49,30,.08);
+  backdrop-filter:blur(16px);
+}
+.nav-btn{
+  color:#9a9185;
+  font-size:11px;
+  gap:4px;
+}
+.nav-btn.af{color:#5f9257;}
+.nav-btn.ao{color:#2b82a9;}
+.nav-btn i{font-size:23px;line-height:1;}
+
+/* 미션 화면도 하단 가림 방지 */
+#mission{background:var(--cream);}
+.mis-header{
+  padding:max(42px,calc(env(safe-area-inset-top) + 10px)) 20px 14px;
+  background:rgba(255,253,248,.96);
+}
+.mis-scroll{padding:14px 18px calc(96px + env(safe-area-inset-bottom));}
+.mis-card{
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(232,223,208,.85);
+}
+
+/* 작은 화면 대응 */
+@media (max-height: 760px){
+  .scene-wrap,#home-canvas,#ocean-canvas{height:178px !important;}
+  .home-scroll{padding-top:6px;}
+  .card{padding:13px;margin-bottom:9px;}
+  .primary-btn{height:54px;margin-bottom:10px;}
+  .info-card,.point-card{padding:13px 16px;margin-bottom:10px;}
+  .bottom-nav{height:calc(64px + env(safe-area-inset-bottom));}
+}
+
 </style>
 
 <div class="phone">
@@ -635,6 +847,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Pretendard',
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
+
+function setAppHeight(){
+  document.documentElement.style.setProperty('--app-h', window.innerHeight + 'px');
+}
+setAppHeight();
+window.addEventListener('resize', setAppHeight);
+window.addEventListener('orientationchange', function(){ setTimeout(setAppHeight, 120); });
+
 var userName='',spaceType='forest',selectedEmotion='',pts=120,planted=false;
 var emotionMap={
   forest:{평온:{icon:'🍎',name:'사과나무 씨앗'},기쁨:{icon:'🍑',name:'복숭아나무 씨앗'},설렘:{icon:'🍇',name:'포도나무 씨앗'},감사:{icon:'🍋',name:'레몬나무 씨앗'},불안:{icon:'🍀',name:'클로버 씨앗'},무기력:{icon:'🌼',name:'민들레 씨앗'}},
@@ -653,9 +873,9 @@ function showHome(){
   document.getElementById('home-canvas').style.display=isOcean?'none':'block';
   document.getElementById('ocean-canvas').style.display=isOcean?'block':'none';
   document.getElementById('home-title').style.color=isOcean?'#1a5a7a':'#2a3020';
-  document.getElementById('scene-fade').style.background='linear-gradient(to top,'+(isOcean?'#f0f6fc':'#f7f4ee')+',transparent)';
-  document.getElementById('home').style.background=isOcean?'#f0f6fc':'#f7f4ee';
-  document.getElementById('home-topbar').style.background=isOcean?'#f0f6fc':'#f7f4ee';
+  document.getElementById('scene-fade').style.background='linear-gradient(to top,'+(isOcean?'#f6fbff':'#f7f4ee')+' 0%, rgba(246,251,255,0.92) 35%, transparent 100%)';
+  document.getElementById('home').style.background=isOcean?'#f6fbff':'#f7f4ee';
+  document.getElementById('home-topbar').style.background=isOcean?'#f6fbff':'#f7f4ee';
   document.getElementById('rec-btn').className='primary-btn '+(isOcean?'btn-ocean':'btn-forest');
   document.getElementById('mission-row').className='info-card '+(isOcean?'card-ocean':'card-forest');
   document.getElementById('point-card').className='point-card '+(isOcean?'pc-ocean':'pc-forest');
@@ -740,31 +960,66 @@ function clearMis(id,btn,p){
 /* ── 나무 (차분한 세이지 팔레트) ── */
 function makeTree(x,z,h,r,v){
   var palettes=[
-    [0x4a7a3a,0x5a8f4a,0x6a9f5a],
-    [0x3a6a4a,0x4a7a5a,0x5a8a6a],
-    [0x527a35,0x628a45,0x729a55],
-    [0x3a6050,0x4a7060,0x5a8070],
-    [0x5a7040,0x6a8050,0x7a9060],
+    [0x6f9f5f,0x83b877,0x9acb87],
+    [0x5f9274,0x79b994,0x9bd1ad],
+    [0x789956,0x94b96f,0xaccb82],
+    [0x638f7d,0x82b39f,0xa3d1bb],
+    [0x8aa05f,0xa9c277,0xc0d48c],
   ];
   var cols=palettes[v%5];
   var g=new THREE.Group();
-  var th=h*0.28;
+
+  /* 줄기가 수관 안쪽까지 들어가도록 높이를 키우고, 수관의 시작점을 아래로 내림 */
+  var th=h*0.38;
   var trk=new THREE.Mesh(
-    new THREE.CylinderGeometry(r*.12,r*.16,th,8),
-    new THREE.MeshLambertMaterial({color:0x7a5030})
+    new THREE.CylinderGeometry(r*.12,r*.20,th,14),
+    new THREE.MeshLambertMaterial({color:0x9b7548})
   );
-  trk.position.y=th/2;g.add(trk);
-  /* 층마다 약간 다른 형태로 부드럽게 */
-  [{y:th+h*.06,r:r*1.05,h:h*.40,c:cols[0]},
-   {y:th+h*.27,r:r*.78,h:h*.32,c:cols[1]},
-   {y:th+h*.48,r:r*.54,h:h*.26,c:cols[2]}
-  ].forEach(function(l,i){
-    var seg=i===0?12:10;
-    var cone=new THREE.Mesh(new THREE.ConeGeometry(l.r,l.h,seg),new THREE.MeshLambertMaterial({color:l.c}));
-    cone.position.y=l.y;g.add(cone);
+  trk.position.y=th/2;
+  trk.castShadow=true;
+  g.add(trk);
+
+  /* 줄기 상단을 살짝 가려서 나무와 줄기가 붙어 보이게 만드는 연결 수관 */
+  var base=new THREE.Mesh(
+    new THREE.SphereGeometry(1,18,14),
+    new THREE.MeshLambertMaterial({color:cols[0]})
+  );
+  base.position.set(0,th+h*.08,0);
+  base.scale.set(r*.78,h*.20,r*.55);
+  base.castShadow=true;
+  g.add(base);
+
+  /* soft 3D blob canopy: 아래쪽이 줄기를 감싸고, 위로 갈수록 둥글게 쌓이는 구조 */
+  var blobs=[
+    {x:-r*.32,y:th+h*.15,z:.03,s:[r*.58,h*.19,r*.46],c:cols[0]},
+    {x:r*.32,y:th+h*.16,z:-.02,s:[r*.60,h*.19,r*.46],c:cols[1]},
+    {x:0,y:th+h*.24,z:.02,s:[r*.88,h*.21,r*.60],c:cols[1]},
+    {x:-r*.22,y:th+h*.38,z:.04,s:[r*.56,h*.18,r*.42],c:cols[0]},
+    {x:r*.22,y:th+h*.39,z:-.04,s:[r*.58,h*.18,r*.42],c:cols[2]},
+    {x:0,y:th+h*.52,z:.02,s:[r*.52,h*.17,r*.38],c:cols[2]},
+  ];
+  blobs.forEach(function(b){
+    var m=new THREE.Mesh(
+      new THREE.SphereGeometry(1,20,14),
+      new THREE.MeshLambertMaterial({color:b.c})
+    );
+    m.position.set(b.x,b.y,b.z);
+    m.scale.set(b.s[0],b.s[1],b.s[2]);
+    m.castShadow=true;
+    g.add(m);
   });
 
-  g.position.set(x,0,z);return g;
+  /* 은은한 하이라이트 */
+  var hi=new THREE.Mesh(
+    new THREE.SphereGeometry(1,16,10),
+    new THREE.MeshLambertMaterial({color:0xd8efbd,transparent:true,opacity:.16})
+  );
+  hi.position.set(-r*.22,th+h*.49,r*.12);
+  hi.scale.set(r*.38,h*.07,r*.26);
+  g.add(hi);
+
+  g.position.set(x,0,z);
+  return g;
 }
 
 /* ── SPLASH Three.js ── */
@@ -776,8 +1031,8 @@ setTimeout(function(){
   renderer.shadowMap.enabled=true;
 
   var scene=new THREE.Scene();
-  scene.background=new THREE.Color(0x4a7a8a);
-  scene.fog=new THREE.Fog(0x3a6a5a,20,50);
+  scene.background=new THREE.Color(0xb7dccf);
+  scene.fog=new THREE.Fog(0xb7dccf,22,55);
 
   var camera=new THREE.PerspectiveCamera(55,W/H,0.1,100);
   camera.position.set(0,4,16);camera.lookAt(0,1.5,0);
@@ -793,7 +1048,7 @@ setTimeout(function(){
 
   /* 하늘 그라데이션 — 뒤쪽 큰 구 */
   var skyGeo=new THREE.SphereGeometry(60,16,16);
-  var skyMat=new THREE.MeshBasicMaterial({color:0x6a9ab0,side:THREE.BackSide});
+  var skyMat=new THREE.MeshBasicMaterial({color:0xcce8dc,side:THREE.BackSide});
   scene.add(new THREE.Mesh(skyGeo,skyMat));
 
   /* 구름 — 더 부드럽게 */
@@ -815,7 +1070,7 @@ setTimeout(function(){
   /* 땅 — 세이지 그린 */
   var gnd=new THREE.Mesh(
     new THREE.PlaneGeometry(80,80),
-    new THREE.MeshLambertMaterial({color:0x5a8a40})
+    new THREE.MeshLambertMaterial({color:0x8fbd70})
   );
   gnd.rotation.x=-Math.PI/2;gnd.receiveShadow=true;scene.add(gnd);
 
@@ -895,15 +1150,15 @@ setTimeout(function(){
 /* ── 홈 숲 ── */
 function initHomeForest(){
   var canvas=document.getElementById('home-canvas');
-  var W=window.innerWidth,H=Math.round(W*0.65);
+  var W=window.innerWidth,H=Math.round(Math.min(W*0.56, 214));
   canvas.style.width='100%';canvas.style.height=H+'px';
   var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true});
   renderer.setSize(W,H);renderer.setPixelRatio(Math.min(devicePixelRatio,2));
   var scene=new THREE.Scene();
-  scene.background=new THREE.Color(0x8abdd0);
-  scene.fog=new THREE.Fog(0x8abdd0,12,26);
+  scene.background=new THREE.Color(0xb8dfd6);
+  scene.fog=new THREE.Fog(0xb8dfd6,12,28);
   var camera=new THREE.PerspectiveCamera(55,W/H,0.1,50);
-  camera.position.set(0,2.5,8);camera.lookAt(0,0.5,0);
+  camera.position.set(0,2.4,8.5);camera.lookAt(0,0.5,0);
   scene.add(new THREE.AmbientLight(0xc8ddc8,1.2));
   var sun=new THREE.DirectionalLight(0xfff0d0,1.8);sun.position.set(4,10,6);scene.add(sun);
   var fill=new THREE.DirectionalLight(0xd0e8d8,0.4);fill.position.set(-3,3,-2);scene.add(fill);
@@ -911,7 +1166,7 @@ function initHomeForest(){
   function mkC(x,y,z){var g=new THREE.Group();[[0,0,0,1.0],[1.3,.3,0,.8],[-.9,.2,0,.75]].forEach(function(c){var m=new THREE.Mesh(new THREE.SphereGeometry(c[3],8,8),new THREE.MeshLambertMaterial({color:0xf8f8f4,transparent:true,opacity:0.9}));m.position.set(c[0],c[1],c[2]);g.add(m);});g.position.set(x,y,z);g.scale.set(1,.45,.65);return g;}
   scene.add(mkC(-4,7,-4));scene.add(mkC(3.5,7.5,-5));
   /* 잔디 */
-  var gnd=new THREE.Mesh(new THREE.PlaneGeometry(30,30),new THREE.MeshLambertMaterial({color:0x5a8a40}));
+  var gnd=new THREE.Mesh(new THREE.PlaneGeometry(30,30),new THREE.MeshLambertMaterial({color:0x91bd71}));
   gnd.rotation.x=-Math.PI/2;scene.add(gnd);
   [[-.6,1.2],[1.8,-.8],[3.2,1.8],[-.8*3,-1.2],[2.2,-2.2]].forEach(function(p){
     var patch=new THREE.Mesh(new THREE.CircleGeometry(.7+Math.random()*.4,8),new THREE.MeshLambertMaterial({color:0x6a9a4a}));
@@ -940,28 +1195,171 @@ function makeAngelfish(T){var g=new T.Group();var body=new T.Mesh(new T.SphereGe
 /* ── 홈 바다 씬 ── */
 function initOcean(){
   var canvas=document.getElementById('ocean-canvas');
-  var W=window.innerWidth,H=Math.round(W*0.65);
+  var W=window.innerWidth,H=Math.round(W*0.62);
   canvas.style.width='100%';canvas.style.height=H+'px';
-  var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true});
+
+  var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:false});
   renderer.setSize(W,H);renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-  var scene=new THREE.Scene();scene.background=new THREE.Color(0x0a3a5a);scene.fog=new THREE.Fog(0x0a2a4a,10,22);
-  var camera=new THREE.PerspectiveCamera(60,W/H,0.1,40);camera.position.set(0,0,7);camera.lookAt(0,0,0);
-  scene.add(new THREE.AmbientLight(0x446688,1.2));
-  var top=new THREE.DirectionalLight(0x88ccff,1.8);top.position.set(0,10,5);scene.add(top);
-  scene.add(new THREE.PointLight(0x44aaff,1.0,16)).position.set(-3,3,2);
-  var sand=new THREE.Mesh(new THREE.PlaneGeometry(20,6),new THREE.MeshLambertMaterial({color:0xc8a860}));sand.rotation.x=-Math.PI/2;sand.position.y=-2.8;scene.add(sand);
-  function mkCoral(x,z,c){var g=new THREE.Group();for(var i=0;i<4;i++){var b=new THREE.Mesh(new THREE.CylinderGeometry(.035,.055,.35+Math.random()*.35,7),new THREE.MeshLambertMaterial({color:c}));b.position.set(Math.random()*.25-.12,.18+Math.random()*.18,Math.random()*.25-.12);b.rotation.z=(Math.random()-.5)*.35;var tip=new THREE.Mesh(new THREE.SphereGeometry(.07,7,7),new THREE.MeshLambertMaterial({color:c}));tip.position.y=.22;b.add(tip);g.add(b);}g.position.set(x,-2.6,z);return g;}
-  [[-3.5,0,0xee5577],[-1.5,-.4,0xff7733],[2,.2,0xff3399],[3.8,-.2,0xffaa33]].forEach(function(a){scene.add(mkCoral(a[0],a[1],a[2]));});
+  renderer.shadowMap.enabled=true;
+
+  var scene=new THREE.Scene();
+  scene.background=new THREE.Color(0x9bd8ec);
+  scene.fog=new THREE.Fog(0x9bd8ec,14,28);
+
+  var camera=new THREE.PerspectiveCamera(58,W/H,0.1,50);
+  camera.position.set(0,1.2,8.5);
+  camera.lookAt(0,-0.2,0);
+
+  scene.add(new THREE.AmbientLight(0xdff8ff,1.65));
+  var sun=new THREE.DirectionalLight(0xffffff,1.55);
+  sun.position.set(-3,8,7);
+  scene.add(sun);
+  var waterGlow=new THREE.PointLight(0x9be7ff,0.9,18);
+  waterGlow.position.set(3,2,4);
+  scene.add(waterGlow);
+
+  /* 밝은 바다 배경: 깊은 남색 대신 라군/아쿠아 톤 */
+  var backPanel=new THREE.Mesh(
+    new THREE.PlaneGeometry(28,13),
+    new THREE.MeshBasicMaterial({color:0xbcefff,transparent:true,opacity:0.34})
+  );
+  backPanel.position.set(0,0,-8);
+  scene.add(backPanel);
+
+  /* 수면 빛결 */
+  for(var i=0;i<7;i++){
+    var ray=new THREE.Mesh(
+      new THREE.PlaneGeometry(0.22,8.5),
+      new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:0.10})
+    );
+    ray.position.set(-6+i*2,2.2,-3.5);
+    ray.rotation.z=(i%2===0?0.18:-0.12);
+    scene.add(ray);
+  }
+
+  /* 모래 바닥 */
+  var sand=new THREE.Mesh(
+    new THREE.PlaneGeometry(24,7),
+    new THREE.MeshLambertMaterial({color:0xf2dfa4})
+  );
+  sand.rotation.x=-Math.PI/2;
+  sand.position.set(0,-2.65,0);
+  scene.add(sand);
+
+  /* 부드러운 모래 언덕 */
+  [[-3.6,-1.2,1.15],[0.2,-1.0,1.35],[3.2,-1.5,1.05]].forEach(function(a){
+    var mound=new THREE.Mesh(
+      new THREE.SphereGeometry(a[2],16,8),
+      new THREE.MeshLambertMaterial({color:0xf7e9b9,transparent:true,opacity:0.72})
+    );
+    mound.scale.set(1.9,0.16,0.75);
+    mound.position.set(a[0],-2.46,a[1]);
+    scene.add(mound);
+  });
+
+  function mkBubble(x,y,z,s){
+    var b=new THREE.Mesh(
+      new THREE.SphereGeometry(s,12,12),
+      new THREE.MeshLambertMaterial({color:0xffffff,transparent:true,opacity:0.55})
+    );
+    b.position.set(x,y,z);
+    return b;
+  }
+  var bubbles=[];
+  [[-3.8,-.4,.4,.07],[-3.5,.2,.2,.05],[2.9,-.8,.5,.08],[3.25,-.2,.3,.055],[.8,.5,-.2,.06],[-.2,1.1,-.6,.045]].forEach(function(b){
+    var bubble=mkBubble(b[0],b[1],b[2],b[3]);bubbles.push(bubble);scene.add(bubble);
+  });
+
+  function mkSoftCoral(x,z,c1,c2,scale){
+    var g=new THREE.Group();
+    for(var i=0;i<5;i++){
+      var h=.36+Math.random()*.34;
+      var branch=new THREE.Mesh(
+        new THREE.CapsuleGeometry(.035,h,4,8),
+        new THREE.MeshLambertMaterial({color:i%2?c1:c2})
+      );
+      branch.position.set((Math.random()-.5)*.36,h/2,(Math.random()-.5)*.22);
+      branch.rotation.z=(Math.random()-.5)*.42;
+      g.add(branch);
+      var tip=new THREE.Mesh(
+        new THREE.SphereGeometry(.065,8,8),
+        new THREE.MeshLambertMaterial({color:i%2?c2:c1})
+      );
+      tip.position.set(branch.position.x, h+.02, branch.position.z);
+      g.add(tip);
+    }
+    g.position.set(x,-2.48,z);
+    g.scale.setScalar(scale||1);
+    return g;
+  }
+  scene.add(mkSoftCoral(-4.2,-.4,0xff9fb5,0xffc7a2,1.0));
+  scene.add(mkSoftCoral(-2.2,.4,0xa2e5cf,0x8bd3ff,.85));
+  scene.add(mkSoftCoral(3.8,-.2,0xffd38a,0xffa8d8,.95));
+  scene.add(mkSoftCoral(1.9,.8,0xb9e6ff,0xb8f2d0,.75));
+
+  /* 선택한 감정에 맞는 대표 물고기만 크게 보여주고, 주변은 작은 보조 생물로 처리 */
+  var selected = (emotionMap.ocean[selectedEmotion] && emotionMap.ocean[selectedEmotion].icon) || '🐠';
+  function mainFishFactory(icon){
+    if(icon==='🐡') return makePufferfish;
+    if(icon==='🪼') return makeJellyfish;
+    if(icon==='🦋') return makeButterflyfish;
+    if(icon==='🐟') return makeAngelfish;
+    return makeClownfish;
+  }
+
   var T=THREE;
-  var fishData=[
-    {make:makeClownfish,x:-2,y:.3,z:1,spd:.7,amp:1.8,ph:0,bob:.3},
-    {make:makeButterflyfish,x:1.5,y:-.5,z:.5,spd:.5,amp:2.2,ph:1.5,bob:.4},
-    {make:makeJellyfish,x:0,y:1.2,z:-.5,spd:.3,amp:1.2,ph:.8,bob:.5},
-    {make:makePufferfish,x:2.5,y:.5,z:1,spd:.6,amp:1.5,ph:2.5,bob:.25},
-    {make:makeAngelfish,x:-1,y:-.8,z:.3,spd:.45,amp:2.0,ph:1.0,bob:.35},
+  var mainFish=mainFishFactory(selected)(T);
+  mainFish.scale.setScalar(1.15);
+  mainFish.position.set(-1.4,.15,1.1);
+  scene.add(mainFish);
+
+  var friend1=makeButterflyfish(T);
+  friend1.scale.setScalar(.62);
+  friend1.position.set(2.3,.75,.4);
+  scene.add(friend1);
+
+  var friend2=makeClownfish(T);
+  friend2.scale.setScalar(.52);
+  friend2.position.set(3.4,-.55,.8);
+  scene.add(friend2);
+
+  var friend3=makeJellyfish(T);
+  friend3.scale.setScalar(.58);
+  friend3.position.set(-3.5,.9,-.1);
+  scene.add(friend3);
+
+  var fishes=[
+    {mesh:mainFish,x:-1.4,y:.15,z:1.1,spd:.55,amp:1.45,ph:0,bob:.22,main:true},
+    {mesh:friend1,x:2.3,y:.75,z:.4,spd:.42,amp:1.05,ph:1.8,bob:.16},
+    {mesh:friend2,x:3.4,y:-.55,z:.8,spd:.50,amp:.85,ph:2.9,bob:.18},
+    {mesh:friend3,x:-3.5,y:.9,z:-.1,spd:.28,amp:.55,ph:.7,bob:.26,jelly:true}
   ];
-  var fishes=fishData.map(function(d){var f=d.make(T);f.scale.setScalar(.85);f.position.set(d.x,d.y,d.z);scene.add(f);return{mesh:f,d:d};});
+
   var t=0;
-  (function loop(){requestAnimationFrame(loop);t+=.016;fishes.forEach(function(f){var d=f.d;f.mesh.position.x=d.x+Math.sin(t*d.spd+d.ph)*d.amp;f.mesh.position.y=d.y+Math.sin(t*.8+d.ph)*d.bob;var vx=Math.cos(t*d.spd+d.ph)*d.amp*d.spd;f.mesh.rotation.y=vx>0?.1:-Math.PI+.1;if(d.make===makeJellyfish)f.mesh.rotation.x=Math.sin(t*1.2)*.15;else f.mesh.rotation.z=Math.sin(t*2+d.ph)*.06;});camera.position.x=Math.sin(t*.15)*.4;renderer.render(scene,camera);})();
+  (function loop(){
+    requestAnimationFrame(loop);t+=.016;
+    fishes.forEach(function(f){
+      var d=f;
+      d.mesh.position.x=d.x+Math.sin(t*d.spd+d.ph)*d.amp;
+      d.mesh.position.y=d.y+Math.sin(t*.75+d.ph)*d.bob;
+      var vx=Math.cos(t*d.spd+d.ph)*d.amp*d.spd;
+      if(d.jelly){
+        d.mesh.rotation.x=Math.sin(t*1.1)*.08;
+        d.mesh.rotation.z=Math.sin(t*.8)*.05;
+      } else {
+        d.mesh.rotation.y=vx>0?.04:-Math.PI+.04;
+        d.mesh.rotation.z=Math.sin(t*1.6+d.ph)*.035;
+      }
+    });
+    bubbles.forEach(function(b,i){
+      b.position.y += 0.006 + i*0.0008;
+      b.position.x += Math.sin(t+i)*0.002;
+      if(b.position.y>1.65)b.position.y=-1.2-(i%3)*.35;
+    });
+    camera.position.x=Math.sin(t*.12)*.22;
+    camera.position.y=1.2+Math.sin(t*.10)*.06;
+    camera.lookAt(0,-0.2,0);
+    renderer.render(scene,camera);
+  })();
 }
 </script>
