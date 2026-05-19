@@ -3,33 +3,31 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{width:100%;height:100%;margin:0;padding:0;background:#faf6f0;overflow:hidden;}
+html,body{width:100%;height:100%;background:#faf6f0;overflow:hidden;}
 body{font-family:system-ui,-apple-system,sans-serif;display:block;}
-.sr-only{display:none;}
-.phone{width:100%;height:100vh;height:100dvh;border-radius:0;border:none;background:#faf6f0;overflow:hidden;position:relative;display:flex;flex-direction:column;}
+.phone{width:100%;height:100vh;height:100dvh;border-radius:0;border:none;background:#faf6f0;overflow:hidden;display:flex;flex-direction:column;}
 .screen{display:none;flex-direction:column;flex:1;overflow:hidden;}
 .screen.active{display:flex;}
-.screen{display:none;flex-direction:column;flex:1;}
-.screen.active{display:flex;}
 
-/* ── SPLASH ── */
-#splash{background:#fdf8f0;align-items:center;justify-content:flex-start;}
-#three-canvas{width:360px;height:300px;display:block;flex-shrink:0;}
-.splash-logo{text-align:center;padding:16px 28px 32px;flex:1;display:flex;flex-direction:column;justify-content:center;}
-.logo-kr{font-size:40px;font-weight:500;color:#4a6741;letter-spacing:8px;margin-bottom:6px;}
-.logo-en{font-size:11px;color:#9aaa8a;letter-spacing:5px;margin-bottom:18px;}
-.slogan{font-size:15px;color:#7a9a6a;line-height:1.9;margin-bottom:26px;}
-.start-btn{width:100%;padding:15px;border-radius:16px;background:#6a9a5a;border:none;color:#fff;font-size:15px;font-weight:500;cursor:pointer;}
+/* SPLASH */
+#splash{background:#1a3a1a;align-items:stretch;justify-content:flex-start;position:relative;}
+#three-canvas{position:absolute;top:0;left:0;width:100%;height:100%;display:block;}
+.splash-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,25,10,0.92) 0%,rgba(10,25,10,0.5) 45%,rgba(10,25,10,0.0) 100%);pointer-events:none;}
+.splash-logo{position:absolute;bottom:0;left:0;right:0;text-align:center;padding:0 28px 44px;display:flex;flex-direction:column;align-items:center;}
+.logo-kr{font-size:44px;font-weight:500;color:#c8e6b8;letter-spacing:10px;margin-bottom:6px;}
+.logo-en{font-size:11px;color:#7aaa6a;letter-spacing:6px;margin-bottom:14px;}
+.slogan{font-size:14px;color:#a8c898;line-height:1.6;margin-bottom:32px;text-align:center;}
+.start-btn{width:100%;padding:16px;border-radius:18px;background:#5a9a4a;border:none;color:#fff;font-size:16px;font-weight:500;cursor:pointer;}
 
 /* 온보딩 공통 */
-.ob-progress{display:flex;gap:5px;padding:16px 20px 0;}
+.ob-progress{display:flex;gap:5px;padding:16px 20px 0;background:#fdf8f0;}
 .ob-dot{height:3px;border-radius:2px;flex:1;background:#e8e0d0;transition:background 0.3s;}
 .ob-dot.done{background:#7aaa6a;}
-.ob-body{flex:1;display:flex;flex-direction:column;padding:20px;background:#fdf8f0;}
+.ob-body{flex:1;display:flex;flex-direction:column;padding:20px;background:#fdf8f0;overflow-y:auto;}
 .ob-q{font-size:20px;font-weight:500;color:#3a4a32;line-height:1.4;margin-bottom:6px;}
 .ob-sub{font-size:13px;color:#8a9a7a;margin-bottom:20px;}
-.ob-nav{display:flex;gap:10px;padding-top:16px;}
-.ob-back{width:48px;height:48px;border-radius:14px;border:1px solid #d8d0c0;background:#fff;color:#8a9a7a;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.ob-nav{display:flex;gap:10px;padding-top:16px;flex-shrink:0;}
+.ob-back{width:48px;height:48px;border-radius:14px;border:1px solid #d8d0c0;background:#fff;color:#8a9a7a;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .ob-next{flex:1;height:48px;border-radius:14px;background:#6a9a5a;border:none;color:#fff;font-size:14px;font-weight:500;cursor:pointer;}
 .ob-next:disabled{background:#d8e0d0;color:#b0baa8;cursor:default;}
 
@@ -41,28 +39,48 @@ body{font-family:system-ui,-apple-system,sans-serif;display:block;}
 .name-preview{margin-top:14px;text-align:center;font-size:13px;color:#8aaa7a;min-height:20px;}
 
 /* 연령대 */
-.age-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;flex:1;align-content:start;}
+.age-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
 .age-card{border-radius:16px;padding:16px 12px;border:1.5px solid #e8e0d0;background:#fff;cursor:pointer;text-align:center;transition:all 0.2s;}
 .age-card.sel{border-color:#7aaa6a;background:#f0f7ec;}
 .age-num{font-size:22px;font-weight:500;color:#4a6a3a;margin-bottom:4px;}
 .age-desc{font-size:11px;color:#8a9a7a;line-height:1.4;}
 
-/* 씨앗 선택 */
-.seed-intro{font-size:13px;color:#6a8a5a;line-height:1.6;margin-bottom:16px;padding:12px;background:#f0f7ec;border-radius:12px;border-left:3px solid #7aaa6a;}
-.seed-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
-.seed-card{border-radius:18px;padding:16px 10px 14px;border:1.5px solid #e8e0d0;background:#fff;cursor:pointer;text-align:center;transition:all 0.2s;position:relative;}
-.seed-card.sel{border-color:#7aaa6a;background:#f0f7ec;}
-.seed-card.sel::after{content:'✓';position:absolute;top:8px;right:10px;font-size:12px;color:#6a9a5a;}
-.seed-fruit{font-size:28px;margin-bottom:6px;}
-.seed-name{font-size:12px;font-weight:500;color:#4a6a3a;margin-bottom:2px;}
-.seed-emotion{font-size:11px;color:#8aaa7a;}
-.seed-desc{font-size:10px;color:#aabaa0;margin-top:3px;line-height:1.3;}
+/* 공간 선택 */
+.space-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;flex:1;align-content:center;}
+.space-card{border-radius:20px;padding:20px 12px;border:2px solid #e8e0d0;background:#fff;cursor:pointer;text-align:center;transition:all 0.2s;display:flex;flex-direction:column;align-items:center;gap:8px;}
+.space-card.sel-forest{border-color:#7aaa6a;background:#f0f7ec;}
+.space-card.sel-ocean{border-color:#6aaad0;background:#f0f7fc;}
+.space-icon{font-size:48px;}
+.space-name{font-size:15px;font-weight:500;color:#3a4a32;}
+.space-desc{font-size:11px;color:#8a9a7a;line-height:1.5;}
+.space-tag{font-size:10px;padding:3px 10px;border-radius:10px;margin-top:4px;}
+.forest-tag{background:#e8f5e0;color:#5a8a4a;}
+.ocean-tag{background:#e0f0fa;color:#4a7a9a;}
 
-/* 화분 */
-.plant-scene{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.selected-seed-badge{display:flex;align-items:center;gap:8px;background:#f0f7ec;border:1.5px solid #c8ddc0;border-radius:12px;padding:8px 16px;margin-bottom:24px;}
-.badge-fruit{font-size:20px;}
+/* 감정 씨앗 선택 */
+.emotion-intro{font-size:13px;color:#6a8a5a;line-height:1.6;margin-bottom:16px;padding:12px;background:#f0f7ec;border-radius:12px;border-left:3px solid #7aaa6a;}
+.emotion-intro.ocean{background:#f0f7fc;border-left-color:#6aaad0;color:#4a7a9a;}
+.emotion-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.emotion-card{border-radius:18px;padding:14px 10px 12px;border:1.5px solid #e8e0d0;background:#fff;cursor:pointer;text-align:center;transition:all 0.2s;position:relative;}
+.emotion-card.sel{border-color:#7aaa6a;background:#f0f7ec;}
+.emotion-card.sel.ocean{border-color:#6aaad0;background:#f0f7fc;}
+.emotion-card.sel::after{content:'✓';position:absolute;top:8px;right:10px;font-size:12px;color:#6a9a5a;}
+.emotion-icon{font-size:26px;margin-bottom:6px;}
+.emotion-name{font-size:12px;font-weight:500;color:#4a6a3a;margin-bottom:2px;}
+.emotion-feel{font-size:11px;color:#8aaa7a;}
+.reward-preview{font-size:10px;margin-top:4px;padding:2px 6px;border-radius:8px;display:inline-block;}
+.reward-forest{background:#e8f5e0;color:#5a8a4a;}
+.reward-ocean{background:#e0f0fa;color:#4a7a9a;}
+
+/* 심기/넣기 화면 */
+.plant-scene{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;}
+.selected-badge{display:flex;align-items:center;gap:8px;border-radius:12px;padding:8px 16px;margin-bottom:24px;}
+.badge-forest{background:#f0f7ec;border:1.5px solid #c8ddc0;}
+.badge-ocean{background:#f0f7fc;border:1.5px solid #b0d0e8;}
+.badge-icon{font-size:20px;}
 .badge-txt{font-size:13px;color:#4a6a3a;}
+
+/* 화분 (숲) */
 .pot-wrap{cursor:pointer;transition:transform 0.15s;width:120px;}
 .pot-wrap:active{transform:scale(0.95);}
 .pot-rim{width:110px;height:14px;background:#c8855a;border-radius:8px;margin:0 auto;border:1.5px solid #d8a070;}
@@ -71,16 +89,28 @@ body{font-family:system-ui,-apple-system,sans-serif;display:block;}
 .pot-sprout{position:absolute;top:-16px;left:50%;transform:translateX(-50%);display:none;text-align:center;}
 .pot-sprout-stem{width:3px;height:18px;background:#6aaa4a;margin:0 auto;border-radius:2px;}
 .pot-sprout-top{font-size:16px;margin-bottom:2px;}
+
+/* 어항 */
+.tank-wrap{cursor:pointer;transition:transform 0.15s;width:160px;height:120px;position:relative;}
+.tank-wrap:active{transform:scale(0.97);}
+.tank-body{width:100%;height:100%;border-radius:16px;background:#c8eef8;border:3px solid #7abbd8;position:relative;overflow:hidden;}
+.tank-water{position:absolute;inset:0;background:linear-gradient(180deg,#a8dcf0 0%,#7ac8e8 100%);opacity:0.6;}
+.tank-sand{position:absolute;bottom:0;left:0;right:0;height:20px;background:#e8d890;border-radius:0 0 13px 13px;}
+.tank-bubble{position:absolute;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.6);display:none;}
+.tank-fish{position:absolute;font-size:24px;bottom:28px;left:50%;transform:translateX(-50%);display:none;}
+.tank-plant{position:absolute;bottom:14px;left:16px;font-size:18px;}
+.tank-rock{position:absolute;bottom:14px;right:20px;font-size:16px;}
+
 .tap-hint{font-size:12px;color:#aabaa0;margin-top:16px;}
-.plant-msg{font-size:13px;color:#6a8a5a;margin-top:14px;text-align:center;min-height:40px;line-height:1.7;}
+.plant-msg{font-size:13px;color:#6a8a5a;margin-top:14px;text-align:center;min-height:40px;line-height:1.7;padding:0 8px;}
 
 /* HOME */
 #home{background:#fdf8f0;}
 .home-topbar{padding:14px 18px 8px;display:flex;align-items:center;justify-content:space-between;background:#fdf8f0;}
 .home-title{font-size:15px;font-weight:500;color:#4a6a3a;}
-.home-streak{font-size:12px;color:#c27c2c;display:flex;align-items:center;gap:4px;}
-.forest-3d-wrap{width:100%;height:240px;flex-shrink:0;position:relative;}
-#home-canvas{width:100%;height:100%;display:block;}
+.home-streak{font-size:12px;color:#c27c2c;}
+.forest-wrap{width:100%;flex-shrink:0;position:relative;}
+#home-canvas{width:100%;display:block;}
 .forest-fade{position:absolute;bottom:0;left:0;right:0;height:48px;background:linear-gradient(to top,#fdf8f0,transparent);}
 .home-scroll{flex:1;overflow-y:auto;padding:4px 16px 16px;}
 .today-banner{border-radius:16px;padding:14px;margin-bottom:10px;background:#fff;border:1px solid #e8e0d0;}
@@ -93,55 +123,29 @@ body{font-family:system-ui,-apple-system,sans-serif;display:block;}
 .slot-ico{font-size:15px;margin-bottom:3px;}
 .rec-btn{width:100%;padding:13px;border-radius:14px;background:#6a9a5a;border:none;color:#fff;font-size:14px;font-weight:500;cursor:pointer;margin-bottom:10px;}
 .mission-teaser{border-radius:14px;padding:12px 14px;background:#fffbf0;border:1px solid #e8d8b0;display:flex;align-items:center;gap:10px;cursor:pointer;margin-bottom:10px;}
-.mt-icon{font-size:18px;}
 .mt-txt{font-size:13px;color:#7a6a3a;}
 .mt-sub{font-size:11px;color:#b0a07a;margin-top:2px;}
-.seed-bag{border-radius:14px;padding:12px 14px;background:#f5faf3;border:1px solid #c8ddc0;display:flex;align-items:center;gap:10px;}
-.sb-txt{font-size:13px;color:#4a6a3a;}
-.sb-sub{font-size:11px;color:#8aaa7a;margin-top:2px;}
-
-/* MISSION */
-#mission{background:#fdf8f0;}
-.mis-header{padding:14px 18px 12px;border-bottom:1px solid #ede8e0;background:#fdf8f0;}
-.mis-title{font-size:16px;font-weight:500;color:#3a4a32;margin-bottom:2px;}
-.mis-sub{font-size:12px;color:#8a9a7a;}
-.mis-points{display:flex;align-items:center;gap:6px;background:#fffbf0;border:1px solid #e8d8b0;border-radius:12px;padding:10px 14px;margin:12px 16px 0;}
-.mis-points-lbl{font-size:12px;color:#b0a07a;}
-.mis-points-val{font-size:18px;font-weight:500;color:#c27c2c;margin-left:auto;}
-.mis-scroll{flex:1;overflow-y:auto;padding:12px 16px 16px;}
-.mis-section-lbl{font-size:11px;color:#aabaa0;letter-spacing:2px;margin-bottom:8px;margin-top:4px;}
-.mis-card{border-radius:16px;padding:14px;background:#fff;border:1px solid #e8e0d0;margin-bottom:10px;transition:border-color 0.2s;}
-.mis-card.cleared{border-color:#c8ddc0;background:#f5faf3;}
-.mis-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
-.mis-icon-wrap{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
-.mis-name{font-size:14px;font-weight:500;color:#3a4a32;margin-bottom:3px;}
-.mis-desc{font-size:11px;color:#8a9a7a;line-height:1.4;}
-.mis-reward{display:flex;align-items:center;gap:6px;background:#f5faf3;border-radius:8px;padding:6px 10px;margin-bottom:10px;}
-.reward-fruit{font-size:16px;}
-.reward-txt{font-size:11px;color:#6a9a5a;}
-.reward-tag{font-size:10px;color:#8aaa7a;margin-left:auto;background:#e8f0e4;padding:2px 8px;border-radius:6px;}
-.reward-tag.rare{color:#c27c2c;background:#fdf0dc;}
-.mis-btn{width:100%;padding:10px;border-radius:10px;border:1.5px solid #c8ddc0;background:#fff;color:#6a9a5a;font-size:13px;font-weight:500;cursor:pointer;}
-.mis-btn.done{background:#f5faf3;border-color:#b8d8b0;color:#8aaa7a;cursor:default;}
+.point-bag{border-radius:14px;padding:12px 14px;background:#f5faf3;border:1px solid #c8ddc0;display:flex;align-items:center;gap:10px;}
+.pb-txt{font-size:13px;color:#4a6a3a;}
+.pb-sub{font-size:11px;color:#8aaa7a;margin-top:2px;}
 
 /* BOTTOM NAV */
 .bottom-nav{display:flex;border-top:1px solid #ede8e0;background:#fdf8f0;padding:8px 0 14px;flex-shrink:0;}
-.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:4px 0;font-size:10px;color:#b0baa8;transition:color 0.15s;}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:4px 0;font-size:10px;color:#b0baa8;}
 .nav-btn.active{color:#6a9a5a;}
 .nav-btn i{font-size:20px;}
 </style>
-
-
 
 <div class="phone">
 
 <!-- SPLASH -->
 <div class="screen active" id="splash">
   <canvas id="three-canvas"></canvas>
+  <div class="splash-overlay"></div>
   <div class="splash-logo">
     <div class="logo-kr">무럭</div>
     <div class="logo-en">MUREOK</div>
-    <div class="slogan">기록할수록<br>무럭무럭 자라는<br>나만의 감정 숲</div>
+    <div class="slogan">내 감정을 처음으로<br>들여다보는 곳</div>
     <button class="start-btn" onclick="go('ob-name')">시작하기</button>
   </div>
 </div>
@@ -151,7 +155,7 @@ body{font-family:system-ui,-apple-system,sans-serif;display:block;}
   <div class="ob-progress"><div class="ob-dot done"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div></div>
   <div class="ob-body">
     <div class="ob-q">뭐라고 불러드릴까요?</div>
-    <div class="ob-sub">이름을 입력하면 나만의 감정 숲이 만들어져요</div>
+    <div class="ob-sub">이름을 입력하면 나만의 공간이 만들어져요</div>
     <div class="name-input-wrap">
       <input class="name-field" id="name-input" placeholder="이름 또는 닉네임" maxlength="8" oninput="onNameInput()"/>
       <div class="name-preview" id="name-preview"></div>
@@ -168,63 +172,146 @@ body{font-family:system-ui,-apple-system,sans-serif;display:block;}
   <div class="ob-progress"><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div></div>
   <div class="ob-body">
     <div class="ob-q">어떤 연령대인가요?</div>
-    <div class="ob-sub">나에게 맞는 감정 언어로 숲을 가꿔드릴게요</div>
+    <div class="ob-sub">나에게 맞는 감정 언어로 공간을 꾸며드릴게요</div>
     <div class="age-grid">
-      <div class="age-card" onclick="selSingle(this,'.age-card','age-next')"><div class="age-num">10대</div><div class="age-desc">학교·친구 관계</div></div>
-      <div class="age-card" onclick="selSingle(this,'.age-card','age-next')"><div class="age-num">20대</div><div class="age-desc">진로·불안·자기이해</div></div>
-      <div class="age-card" onclick="selSingle(this,'.age-card','age-next')"><div class="age-num">30대</div><div class="age-desc">번아웃·일과 삶</div></div>
-      <div class="age-card" onclick="selSingle(this,'.age-card','age-next')"><div class="age-num">40대</div><div class="age-desc">차분한 감정 정리</div></div>
+      <div class="age-card" onclick="selOne(this,'.age-card','age-next')"><div class="age-num">10대</div><div class="age-desc">학교·친구 관계</div></div>
+      <div class="age-card" onclick="selOne(this,'.age-card','age-next')"><div class="age-num">20대</div><div class="age-desc">진로·불안·자기이해</div></div>
+      <div class="age-card" onclick="selOne(this,'.age-card','age-next')"><div class="age-num">30대</div><div class="age-desc">번아웃·일과 삶</div></div>
+      <div class="age-card" onclick="selOne(this,'.age-card','age-next')"><div class="age-num">40대</div><div class="age-desc">차분한 감정 정리</div></div>
     </div>
     <div class="ob-nav">
       <button class="ob-back" onclick="go('ob-name')">←</button>
-      <button class="ob-next" id="age-next" disabled onclick="go('ob-seed')">다음으로</button>
+      <button class="ob-next" id="age-next" disabled onclick="go('ob-space')">다음으로</button>
     </div>
   </div>
 </div>
 
-<!-- OB: 씨앗 선택 -->
-<div class="screen" id="ob-seed">
+<!-- OB: 공간 선택 -->
+<div class="screen" id="ob-space">
   <div class="ob-progress"><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot"></div><div class="ob-dot"></div></div>
-  <div class="ob-body" style="padding-bottom:12px;overflow-y:auto;">
-    <div class="ob-q">첫 감정 씨앗을 골라요</div>
-    <div class="ob-sub">지금 내 마음에 가장 가까운 감정은요?</div>
-    <div class="seed-intro">씨앗마다 다른 나무와 열매가 자라요. 솔직하게 골라주세요 🌱</div>
-    <div class="seed-grid">
-      <div class="seed-card" onclick="selSeed(this)" data-fruit="🍎" data-name="사과나무 씨앗"><div class="seed-fruit">🍎</div><div class="seed-name">사과나무</div><div class="seed-emotion">평온 · 안정</div><div class="seed-desc">잔잔하고 균형잡힌 마음</div></div>
-      <div class="seed-card" onclick="selSeed(this)" data-fruit="🍑" data-name="복숭아나무 씨앗"><div class="seed-fruit">🍑</div><div class="seed-name">복숭아나무</div><div class="seed-emotion">기쁨 · 따뜻함</div><div class="seed-desc">기분 좋고 에너지 넘칠 때</div></div>
-      <div class="seed-card" onclick="selSeed(this)" data-fruit="🍇" data-name="포도나무 씨앗"><div class="seed-fruit">🍇</div><div class="seed-name">포도나무</div><div class="seed-emotion">설렘 · 기대</div><div class="seed-desc">두근거리고 기대될 때</div></div>
-      <div class="seed-card" onclick="selSeed(this)" data-fruit="🍋" data-name="레몬나무 씨앗"><div class="seed-fruit">🍋</div><div class="seed-name">레몬나무</div><div class="seed-emotion">감사 · 충만</div><div class="seed-desc">작은 것에 감사할 때</div></div>
-      <div class="seed-card" onclick="selSeed(this)" data-fruit="🍒" data-name="체리나무 씨앗"><div class="seed-fruit">🍒</div><div class="seed-name">체리나무</div><div class="seed-emotion">불안 · 긴장</div><div class="seed-desc">마음이 복잡할 때</div></div>
-      <div class="seed-card" onclick="selSeed(this)" data-fruit="🍐" data-name="배나무 씨앗"><div class="seed-fruit">🍐</div><div class="seed-name">배나무</div><div class="seed-emotion">무기력 · 쉬고 싶음</div><div class="seed-desc">힘이 빠지고 지칠 때</div></div>
+  <div class="ob-body">
+    <div class="ob-q">나만의 공간을 골라요</div>
+    <div class="ob-sub">감정을 기록할수록 공간이 채워져요</div>
+    <div class="space-grid">
+      <div class="space-card" id="card-forest" onclick="selSpace('forest')">
+        <div class="space-icon">🌳</div>
+        <div class="space-name">감정 숲</div>
+        <div class="space-desc">씨앗을 심고<br>나무와 꽃을 키워요</div>
+        <div class="space-tag forest-tag">씨앗 → 새싹 → 나무</div>
+      </div>
+      <div class="space-card" id="card-ocean" onclick="selSpace('ocean')">
+        <div class="space-icon">🐠</div>
+        <div class="space-name">감정 어항</div>
+        <div class="space-desc">치어를 키우고<br>바다 생물을 모아요</div>
+        <div class="space-tag ocean-tag">치어 → 새끼 → 성어</div>
+      </div>
     </div>
     <div class="ob-nav">
       <button class="ob-back" onclick="go('ob-age')">←</button>
-      <button class="ob-next" id="seed-next" disabled onclick="go('ob-plant')">다음으로</button>
+      <button class="ob-next" id="space-next" disabled onclick="go('ob-emotion')">다음으로</button>
     </div>
   </div>
 </div>
 
-<!-- OB: 화분에 심기 -->
-<div class="screen" id="ob-plant">
+<!-- OB: 감정 선택 -->
+<div class="screen" id="ob-emotion">
   <div class="ob-progress"><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot"></div></div>
   <div class="ob-body">
-    <div class="ob-q">이제 씨앗을 심어볼까요?</div>
-    <div class="ob-sub">화분을 탭하면 첫 씨앗이 심겨요</div>
+    <div class="ob-q">지금 내 감정은요?</div>
+    <div class="ob-sub">감정에 맞는 첫 친구를 드릴게요</div>
+    <div class="emotion-intro" id="emotion-intro">솔직한 감정을 골라주세요. 감정에 따라 첫 식물이 달라져요 🌱</div>
+    <div class="emotion-grid">
+      <div class="emotion-card" onclick="selEmotion(this)" data-emotion="평온">
+        <div class="emotion-icon">😌</div>
+        <div class="emotion-name">평온</div>
+        <div class="emotion-feel">잔잔하고 안정적인</div>
+        <div class="reward-preview reward-forest" id="rw-평온">🍎 사과나무 씨앗</div>
+      </div>
+      <div class="emotion-card" onclick="selEmotion(this)" data-emotion="기쁨">
+        <div class="emotion-icon">😊</div>
+        <div class="emotion-name">기쁨</div>
+        <div class="emotion-feel">에너지가 넘치는</div>
+        <div class="reward-preview reward-forest" id="rw-기쁨">🍑 복숭아나무 씨앗</div>
+      </div>
+      <div class="emotion-card" onclick="selEmotion(this)" data-emotion="설렘">
+        <div class="emotion-icon">🤩</div>
+        <div class="emotion-name">설렘</div>
+        <div class="emotion-feel">두근거리고 기대되는</div>
+        <div class="reward-preview reward-forest" id="rw-설렘">🍇 포도나무 씨앗</div>
+      </div>
+      <div class="emotion-card" onclick="selEmotion(this)" data-emotion="감사">
+        <div class="emotion-icon">🙏</div>
+        <div class="emotion-name">감사</div>
+        <div class="emotion-feel">충만하고 따뜻한</div>
+        <div class="reward-preview reward-forest" id="rw-감사">💜 라벤더 씨앗</div>
+      </div>
+      <div class="emotion-card" onclick="selEmotion(this)" data-emotion="불안">
+        <div class="emotion-icon">😰</div>
+        <div class="emotion-name">불안</div>
+        <div class="emotion-feel">마음이 복잡한</div>
+        <div class="reward-preview reward-forest" id="rw-불안">🍀 클로버 씨앗</div>
+      </div>
+      <div class="emotion-card" onclick="selEmotion(this)" data-emotion="무기력">
+        <div class="emotion-icon">😶</div>
+        <div class="emotion-name">무기력</div>
+        <div class="emotion-feel">힘이 빠지고 지친</div>
+        <div class="reward-preview reward-forest" id="rw-무기력">🌼 민들레 씨앗</div>
+      </div>
+    </div>
+    <div class="ob-nav">
+      <button class="ob-back" onclick="go('ob-space')">←</button>
+      <button class="ob-next" id="emotion-next" disabled onclick="go('ob-plant')">다음으로</button>
+    </div>
+  </div>
+</div>
+
+<!-- OB: 심기/넣기 -->
+<div class="screen" id="ob-plant">
+  <div class="ob-progress"><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot done"></div></div>
+  <div class="ob-body">
+    <div class="ob-q" id="plant-q">씨앗을 심어볼까요?</div>
+    <div class="ob-sub" id="plant-sub">화분을 탭하면 첫 씨앗이 심겨요</div>
     <div class="plant-scene">
-      <div class="selected-seed-badge"><div class="badge-fruit" id="plant-fruit">🍎</div><div class="badge-txt" id="plant-name">사과나무 씨앗</div></div>
-      <div class="pot-wrap" id="pot" onclick="plantSeed()">
-        <div class="pot-rim"></div>
-        <div class="pot-body">
-          <div class="pot-soil"></div>
-          <div class="pot-sprout" id="sprout"><div class="pot-sprout-top" id="sprout-top">🌱</div><div class="pot-sprout-stem"></div></div>
+      <div class="selected-badge badge-forest" id="plant-badge">
+        <div class="badge-icon" id="plant-icon">🍎</div>
+        <div class="badge-txt" id="plant-name">사과나무 씨앗</div>
+      </div>
+
+      <!-- 숲: 화분 -->
+      <div id="pot-area">
+        <div class="pot-wrap" onclick="doPlant()">
+          <div class="pot-rim"></div>
+          <div class="pot-body">
+            <div class="pot-soil"></div>
+            <div class="pot-sprout" id="sprout">
+              <div class="pot-sprout-top" id="sprout-top">🌱</div>
+              <div class="pot-sprout-stem"></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="tap-hint" id="tap-hint">화분을 탭해보세요</div>
+
+      <!-- 어항 -->
+      <div id="tank-area" style="display:none;">
+        <div class="tank-wrap" onclick="doPlant()">
+          <div class="tank-body">
+            <div class="tank-water"></div>
+            <div class="tank-sand"></div>
+            <div class="tank-plant">🪸</div>
+            <div class="tank-rock">🪨</div>
+            <div class="tank-bubble" id="bubble1" style="left:30%;bottom:40%;"></div>
+            <div class="tank-bubble" id="bubble2" style="left:60%;bottom:55%;"></div>
+            <div class="tank-fish" id="tank-fish">🐠</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tap-hint" id="tap-hint">탭해보세요</div>
       <div class="plant-msg" id="plant-msg"></div>
     </div>
     <div class="ob-nav">
-      <button class="ob-back" onclick="go('ob-seed')">←</button>
-      <button class="ob-next" id="plant-next" disabled onclick="goHome()">나의 숲으로 가기 →</button>
+      <button class="ob-back" onclick="go('ob-emotion')">←</button>
+      <button class="ob-next" id="plant-next" disabled onclick="goHome()">나의 공간으로 가기 →</button>
     </div>
   </div>
 </div>
@@ -232,10 +319,10 @@ body{font-family:system-ui,-apple-system,sans-serif;display:block;}
 <!-- HOME -->
 <div class="screen" id="home">
   <div class="home-topbar">
-    <div class="home-title" id="home-forest-title">나의 감정 숲</div>
+    <div class="home-title" id="home-title">나의 감정 숲</div>
     <div class="home-streak">🔥 12일째</div>
   </div>
-  <div class="forest-3d-wrap">
+  <div class="forest-wrap">
     <canvas id="home-canvas"></canvas>
     <div class="forest-fade"></div>
   </div>
@@ -249,82 +336,86 @@ body{font-family:system-ui,-apple-system,sans-serif;display:block;}
     </div>
     <button class="rec-btn">저녁 감정 기록하기</button>
     <div class="mission-teaser" onclick="go('mission');setNav('nav-mis')">
-      <div class="mt-icon">✨</div>
-      <div><div class="mt-txt">오늘의 미션 — 씨앗을 얻어요</div><div class="mt-sub">미션 완료 시 나무·꽃·희귀 씨앗 획득</div></div>
+      <div style="font-size:18px;">✨</div>
+      <div><div class="mt-txt">오늘의 미션 — 포인트를 얻어요</div><div class="mt-sub">미션 완료 시 감정 포인트 획득</div></div>
       <span style="margin-left:auto;color:#c8c0b0;font-size:16px;">›</span>
     </div>
-    <div class="seed-bag">
-      <div style="font-size:18px;">🎒</div>
-      <div><div class="sb-txt">씨앗 가방 · 3개 보유</div><div class="sb-sub">🍎 사과 · 🌸 장미 · 🍂 단풍나무 씨앗</div></div>
+    <div class="point-bag">
+      <div style="font-size:18px;">💚</div>
+      <div><div class="pb-txt">감정 포인트 · 120p</div><div class="pb-sub">상점에서 식물·물고기 구매 가능</div></div>
     </div>
   </div>
   <div class="bottom-nav">
-    <button class="nav-btn active" id="nav-home" onclick="showHome();setNav('nav-home')"><i class="ti ti-trees" aria-hidden="true"></i><span>홈</span></button>
+    <button class="nav-btn active" id="nav-home" onclick="showHome()"><i class="ti ti-trees" aria-hidden="true"></i><span>홈</span></button>
     <button class="nav-btn" id="nav-rec"><i class="ti ti-pencil" aria-hidden="true"></i><span>기록</span></button>
     <button class="nav-btn" id="nav-mis" onclick="go('mission');setNav('nav-mis')"><i class="ti ti-sparkles" aria-hidden="true"></i><span>미션</span></button>
     <button class="nav-btn" id="nav-rep"><i class="ti ti-chart-bar" aria-hidden="true"></i><span>리포트</span></button>
-    <button class="nav-btn" id="nav-shop"><i class="ti ti-seedling" aria-hidden="true"></i><span>꾸미기</span></button>
+    <button class="nav-btn" id="nav-shop"><i class="ti ti-seedling" aria-hidden="true"></i><span>상점</span></button>
   </div>
 </div>
 
 <!-- MISSION -->
 <div class="screen" id="mission">
-  <div class="mis-header">
-    <div class="mis-title">오늘의 미션</div>
-    <div class="mis-sub">미션을 완료하면 씨앗을 얻어요</div>
+  <div style="padding:14px 18px 12px;border-bottom:1px solid #ede8e0;background:#fdf8f0;flex-shrink:0;">
+    <div style="font-size:16px;font-weight:500;color:#3a4a32;margin-bottom:2px;">오늘의 미션</div>
+    <div style="font-size:12px;color:#8a9a7a;">완료하면 감정 포인트를 얻어요</div>
   </div>
-  <div class="mis-points">
-    <span style="font-size:16px;">🎒</span>
-    <span class="mis-points-lbl">씨앗 가방</span>
-    <span class="mis-points-val" id="mis-seed-count">3</span>
-    <span style="font-size:12px;color:#b0a07a;margin-left:2px;">개</span>
+  <div style="display:flex;align-items:center;gap:6px;background:#f5faf3;border:1px solid #c8ddc0;border-radius:12px;padding:10px 14px;margin:12px 16px 0;flex-shrink:0;">
+    <span style="font-size:16px;">💚</span>
+    <span style="font-size:12px;color:#8aaa7a;">감정 포인트</span>
+    <span style="font-size:18px;font-weight:500;color:#5a9a5a;margin-left:auto;" id="mis-pts">120</span>
+    <span style="font-size:12px;color:#8aaa7a;margin-left:2px;">p</span>
   </div>
-  <div class="mis-scroll">
-    <div class="mis-section-lbl">나무 씨앗 미션</div>
-    <div class="mis-card" id="mc1">
-      <div class="mis-top"><div class="mis-icon-wrap" style="background:#f0f7ec;">🌬️</div><div><div class="mis-name">3분 호흡하기</div><div class="mis-desc">천천히 숨을 들이쉬고 내쉬며 지금 이 순간에 집중해요</div></div></div>
-      <div class="mis-reward"><div class="reward-fruit">🍎</div><div class="reward-txt">사과나무 씨앗 획득</div><div class="reward-tag">나무 씨앗</div></div>
-      <button class="mis-btn" onclick="clearMission('mc1',this,'🍎','사과나무 씨앗')">시작하기</button>
+  <div style="flex:1;overflow-y:auto;padding:12px 16px 16px;">
+    <div style="font-size:11px;color:#aabaa0;letter-spacing:2px;margin-bottom:8px;">나무 씨앗 미션</div>
+    <div class="mis-card" id="mc1" style="border-radius:16px;padding:14px;background:#fff;border:1px solid #e8e0d0;margin-bottom:10px;">
+      <div style="display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;">
+        <div style="width:40px;height:40px;border-radius:12px;background:#f0f7ec;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🌬️</div>
+        <div><div style="font-size:14px;font-weight:500;color:#3a4a32;margin-bottom:3px;">3분 호흡하기</div><div style="font-size:11px;color:#8a9a7a;line-height:1.4;">천천히 숨을 들이쉬고 내쉬며 지금 이 순간에 집중해요</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;background:#f5faf3;border-radius:8px;padding:6px 10px;margin-bottom:10px;">
+        <span style="font-size:14px;">💚</span><span style="font-size:11px;color:#6a9a5a;">+30p 획득</span>
+      </div>
+      <button style="width:100%;padding:10px;border-radius:10px;border:1.5px solid #c8ddc0;background:#fff;color:#6a9a5a;font-size:13px;font-weight:500;cursor:pointer;" onclick="clearMis('mc1',this,30)">시작하기</button>
     </div>
-    <div class="mis-card" id="mc2">
-      <div class="mis-top"><div class="mis-icon-wrap" style="background:#fffbf0;">✍️</div><div><div class="mis-name">감사한 일 1개 적기</div><div class="mis-desc">오늘 작은 것 하나라도, 감사했던 순간을 떠올려봐요</div></div></div>
-      <div class="mis-reward"><div class="reward-fruit">🍑</div><div class="reward-txt">복숭아나무 씨앗 획득</div><div class="reward-tag">나무 씨앗</div></div>
-      <button class="mis-btn" onclick="clearMission('mc2',this,'🍑','복숭아나무 씨앗')">시작하기</button>
+    <div class="mis-card" id="mc2" style="border-radius:16px;padding:14px;background:#fff;border:1px solid #e8e0d0;margin-bottom:10px;">
+      <div style="display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;">
+        <div style="width:40px;height:40px;border-radius:12px;background:#fffbf0;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">✍️</div>
+        <div><div style="font-size:14px;font-weight:500;color:#3a4a32;margin-bottom:3px;">감사한 일 1개 적기</div><div style="font-size:11px;color:#8a9a7a;line-height:1.4;">오늘 작은 것 하나라도 감사했던 순간을 떠올려봐요</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;background:#f5faf3;border-radius:8px;padding:6px 10px;margin-bottom:10px;">
+        <span style="font-size:14px;">💚</span><span style="font-size:11px;color:#6a9a5a;">+40p 획득</span>
+      </div>
+      <button style="width:100%;padding:10px;border-radius:10px;border:1.5px solid #c8ddc0;background:#fff;color:#6a9a5a;font-size:13px;font-weight:500;cursor:pointer;" onclick="clearMis('mc2',this,40)">시작하기</button>
     </div>
-    <div class="mis-card" id="mc3">
-      <div class="mis-top"><div class="mis-icon-wrap" style="background:#f0f4fa;">🌊</div><div><div class="mis-name">물 한 잔 마시기</div><div class="mis-desc">몸을 돌보는 것도 감정 회복의 시작이에요</div></div></div>
-      <div class="mis-reward"><div class="reward-fruit">🍇</div><div class="reward-txt">포도나무 씨앗 획득</div><div class="reward-tag">나무 씨앗</div></div>
-      <button class="mis-btn" onclick="clearMission('mc3',this,'🍇','포도나무 씨앗')">시작하기</button>
+    <div class="mis-card" id="mc3" style="border-radius:16px;padding:14px;background:#fff;border:1px solid #e8e0d0;margin-bottom:10px;">
+      <div style="display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;">
+        <div style="width:40px;height:40px;border-radius:12px;background:#fffbec;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">☀️</div>
+        <div><div style="font-size:14px;font-weight:500;color:#3a4a32;margin-bottom:3px;">햇빛 5분 보기</div><div style="font-size:11px;color:#8a9a7a;line-height:1.4;">창문을 열거나 잠깐 밖에 나가 햇살을 느껴봐요</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;background:#f5faf3;border-radius:8px;padding:6px 10px;margin-bottom:10px;">
+        <span style="font-size:14px;">💚</span><span style="font-size:11px;color:#6a9a5a;">+30p 획득</span>
+      </div>
+      <button style="width:100%;padding:10px;border-radius:10px;border:1.5px solid #c8ddc0;background:#fff;color:#6a9a5a;font-size:13px;font-weight:500;cursor:pointer;" onclick="clearMis('mc3',this,30)">시작하기</button>
     </div>
-    <div class="mis-section-lbl" style="margin-top:16px;">꽃 씨앗 미션</div>
-    <div class="mis-card" id="mc4">
-      <div class="mis-top"><div class="mis-icon-wrap" style="background:#fdf0f5;">💌</div><div><div class="mis-name">나에게 해주고 싶은 말 쓰기</div><div class="mis-desc">오늘의 나에게, 짧은 한 마디를 건네봐요</div></div></div>
-      <div class="mis-reward"><div class="reward-fruit">🌸</div><div class="reward-txt">장미꽃 씨앗 획득</div><div class="reward-tag">꽃 씨앗</div></div>
-      <button class="mis-btn" onclick="clearMission('mc4',this,'🌸','장미꽃 씨앗')">시작하기</button>
-    </div>
-    <div class="mis-card" id="mc5">
-      <div class="mis-top"><div class="mis-icon-wrap" style="background:#fffbec;">☀️</div><div><div class="mis-name">햇빛 5분 보기</div><div class="mis-desc">창문을 열거나 잠깐 밖에 나가, 햇살을 느껴봐요</div></div></div>
-      <div class="mis-reward"><div class="reward-fruit">🌻</div><div class="reward-txt">해바라기 씨앗 획득</div><div class="reward-tag">꽃 씨앗</div></div>
-      <button class="mis-btn" onclick="clearMission('mc5',this,'🌻','해바라기 씨앗')">시작하기</button>
-    </div>
-    <div class="mis-section-lbl" style="margin-top:16px;">희귀 씨앗 미션</div>
-    <div class="mis-card" id="mc7">
-      <div class="mis-top"><div class="mis-icon-wrap" style="background:#fff8f0;">🧠</div><div><div class="mis-name">오늘 감정 이름 붙이기</div><div class="mis-desc">지금 느끼는 감정에 정확한 이름을 붙여봐요. 알아차리는 것만으로도 회복이 시작돼요</div></div></div>
-      <div class="mis-reward"><div class="reward-fruit">🍂</div><div class="reward-txt">단풍나무 씨앗 획득</div><div class="reward-tag rare">희귀 씨앗</div></div>
-      <button class="mis-btn" onclick="clearMission('mc7',this,'🍂','단풍나무 씨앗')">시작하기</button>
-    </div>
-    <div id="mis-cleared-msg" style="display:none;text-align:center;padding:20px 0;">
-      <div style="font-size:28px;margin-bottom:8px;">🎒</div>
-      <div style="font-size:14px;color:#4a6a3a;font-weight:500;">오늘 미션 모두 완료!</div>
-      <div style="font-size:12px;color:#8aaa7a;margin-top:4px;">씨앗들이 가방에 담겼어요</div>
+    <div style="font-size:11px;color:#aabaa0;letter-spacing:2px;margin-bottom:8px;margin-top:16px;">희귀 미션</div>
+    <div class="mis-card" id="mc4" style="border-radius:16px;padding:14px;background:#fff;border:1px solid #e8e0d0;margin-bottom:10px;">
+      <div style="display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;">
+        <div style="width:40px;height:40px;border-radius:12px;background:#fff8f0;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🧠</div>
+        <div><div style="font-size:14px;font-weight:500;color:#3a4a32;margin-bottom:3px;">오늘 감정 이름 붙이기</div><div style="font-size:11px;color:#8a9a7a;line-height:1.4;">지금 느끼는 감정에 정확한 이름을 붙여봐요</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;background:#fff8f0;border-radius:8px;padding:6px 10px;margin-bottom:10px;">
+        <span style="font-size:14px;">💚</span><span style="font-size:11px;color:#c27c2c;">+80p 획득 (희귀)</span>
+      </div>
+      <button style="width:100%;padding:10px;border-radius:10px;border:1.5px solid #e8d8b0;background:#fff;color:#c27c2c;font-size:13px;font-weight:500;cursor:pointer;" onclick="clearMis('mc4',this,80)">시작하기</button>
     </div>
   </div>
   <div class="bottom-nav">
-    <button class="nav-btn" id="nav-home2" onclick="showHome();setNav('nav-home')"><i class="ti ti-trees" aria-hidden="true"></i><span>홈</span></button>
-    <button class="nav-btn" id="nav-rec2"><i class="ti ti-pencil" aria-hidden="true"></i><span>기록</span></button>
+    <button class="nav-btn" onclick="showHome();setNav('nav-home2')"><i class="ti ti-trees" aria-hidden="true"></i><span>홈</span></button>
+    <button class="nav-btn"><i class="ti ti-pencil" aria-hidden="true"></i><span>기록</span></button>
     <button class="nav-btn active" id="nav-mis2"><i class="ti ti-sparkles" aria-hidden="true"></i><span>미션</span></button>
-    <button class="nav-btn" id="nav-rep2"><i class="ti ti-chart-bar" aria-hidden="true"></i><span>리포트</span></button>
-    <button class="nav-btn" id="nav-shop2"><i class="ti ti-seedling" aria-hidden="true"></i><span>꾸미기</span></button>
+    <button class="nav-btn"><i class="ti ti-chart-bar" aria-hidden="true"></i><span>리포트</span></button>
+    <button class="nav-btn"><i class="ti ti-seedling" aria-hidden="true"></i><span>상점</span></button>
   </div>
 </div>
 
@@ -333,9 +424,14 @@ body{font-family:system-ui,-apple-system,sans-serif;display:block;}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 var userName='';
-var selectedSeed={fruit:'🍎',name:'사과나무 씨앗'};
-var seedCount=3;
-var clearedCount=0;
+var spaceType='forest';
+var selectedEmotion='';
+var emotionMap={
+  forest:{평온:{icon:'🍎',name:'사과나무 씨앗'},기쁨:{icon:'🍑',name:'복숭아나무 씨앗'},설렘:{icon:'🍇',name:'포도나무 씨앗'},감사:{icon:'💜',name:'라벤더 씨앗'},불안:{icon:'🍀',name:'클로버 씨앗'},무기력:{icon:'🌼',name:'민들레 씨앗'}},
+  ocean:{평온:{icon:'🐠',name:'흰동가리 치어'},기쁨:{icon:'🐡',name:'복어 치어'},설렘:{icon:'🦋',name:'나비고기 치어'},감사:{icon:'🪼',name:'해파리 치어'},불안:{icon:'🐟',name:'열대어 치어'},무기력:{icon:'🐠',name:'흰동가리 치어'}}
+};
+var pts=120;
+var planted=false;
 
 function go(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});document.getElementById(id).classList.add('active');}
 function setNav(id){document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});var el=document.getElementById(id);if(el)el.classList.add('active');}
@@ -344,207 +440,152 @@ function showHome(){go('home');setNav('nav-home');if(!window._hi){initHomeForest
 function onNameInput(){
   var v=document.getElementById('name-input').value.trim();
   userName=v;
-  document.getElementById('name-preview').textContent=v?v+'의 감정 숲이 만들어질 거예요 🌿':'';
+  document.getElementById('name-preview').textContent=v?v+'의 감정 공간이 만들어질 거예요 🌿':'';
   document.getElementById('name-next').disabled=v.length===0;
 }
-function selSingle(el,cls,nextId){
+function selOne(el,cls,nextId){
   document.querySelectorAll(cls).forEach(function(e){e.classList.remove('sel');});
   el.classList.add('sel');
   document.getElementById(nextId).disabled=false;
 }
-function selSeed(el){
-  document.querySelectorAll('.seed-card').forEach(function(e){e.classList.remove('sel');});
+
+function selSpace(type){
+  spaceType=type;
+  document.getElementById('card-forest').classList.remove('sel-forest');
+  document.getElementById('card-ocean').classList.remove('sel-ocean');
+  document.getElementById('card-'+type).classList.add('sel-'+type);
+  document.getElementById('space-next').disabled=false;
+  updateEmotionRewards();
+}
+
+function updateEmotionRewards(){
+  var isOcean=spaceType==='ocean';
+  var intro=document.getElementById('emotion-intro');
+  intro.className='emotion-intro'+(isOcean?' ocean':'');
+  intro.textContent=isOcean?'솔직한 감정을 골라주세요. 감정에 따라 첫 물고기가 달라져요 🐠':'솔직한 감정을 골라주세요. 감정에 따라 첫 식물이 달라져요 🌱';
+  var map=emotionMap[spaceType];
+  Object.keys(map).forEach(function(k){
+    var el=document.getElementById('rw-'+k);
+    if(el){el.textContent=map[k].icon+' '+map[k].name;el.className='reward-preview '+(isOcean?'reward-ocean':'reward-forest');}
+  });
+}
+
+function selEmotion(el){
+  document.querySelectorAll('.emotion-card').forEach(function(e){e.classList.remove('sel','ocean');});
   el.classList.add('sel');
-  selectedSeed={fruit:el.dataset.fruit,name:el.dataset.name};
-  document.getElementById('seed-next').disabled=false;
+  if(spaceType==='ocean') el.classList.add('ocean');
+  selectedEmotion=el.dataset.emotion;
+  document.getElementById('emotion-next').disabled=false;
+  var reward=emotionMap[spaceType][selectedEmotion];
+  document.getElementById('plant-icon').textContent=reward.icon;
+  document.getElementById('plant-name').textContent=reward.name;
+  var isOcean=spaceType==='ocean';
+  document.getElementById('plant-badge').className='selected-badge '+(isOcean?'badge-ocean':'badge-forest');
+  document.getElementById('plant-q').textContent=isOcean?'어항에 넣어볼까요?':'씨앗을 심어볼까요?';
+  document.getElementById('plant-sub').textContent=isOcean?'어항을 탭하면 첫 물고기가 들어가요':'화분을 탭하면 첫 씨앗이 심겨요';
+  document.getElementById('pot-area').style.display=isOcean?'none':'block';
+  document.getElementById('tank-area').style.display=isOcean?'block':'none';
+  document.getElementById('tank-fish').textContent=reward.icon;
+  planted=false;
+  document.getElementById('tap-hint').style.display='block';
+  document.getElementById('plant-msg').textContent='';
+  document.getElementById('sprout').style.display='none';
+  document.getElementById('tank-fish').style.display='none';
+  document.getElementById('plant-next').disabled=true;
+  document.getElementById('plant-next').textContent='나의 공간으로 가기 →';
 }
-function plantSeed(){
-  var sp=document.getElementById('sprout');
-  if(sp.style.display==='block') return;
-  document.getElementById('plant-fruit').textContent=selectedSeed.fruit;
-  document.getElementById('plant-name').textContent=selectedSeed.name;
-  document.getElementById('sprout-top').textContent=selectedSeed.fruit;
-  sp.style.display='block';
+
+function doPlant(){
+  if(planted) return;
+  planted=true;
+  var isOcean=spaceType==='ocean';
+  var reward=emotionMap[spaceType][selectedEmotion];
+  if(isOcean){
+    var fish=document.getElementById('tank-fish');
+    fish.style.display='block';
+    fish.style.animation='none';
+    document.getElementById('bubble1').style.display='block';
+    document.getElementById('bubble2').style.display='block';
+    document.getElementById('plant-msg').textContent=reward.name+'이(가) 어항에 들어왔어요!\n매일 기록하면 무럭무럭 자랄 거예요 🐠';
+  } else {
+    document.getElementById('sprout-top').textContent=reward.icon;
+    document.getElementById('sprout').style.display='block';
+    document.getElementById('plant-msg').textContent=reward.name+'이(가) 심겼어요!\n꾸준히 기록하면 무럭무럭 자랄 거예요 🌱';
+  }
   document.getElementById('tap-hint').style.display='none';
-  document.getElementById('plant-msg').textContent=selectedSeed.name+'이(가) 심겼어요.\n꾸준히 감정을 기록하면 무럭무럭 자랄 거예요 🌱';
   var btn=document.getElementById('plant-next');
-  btn.disabled=false;btn.textContent='나의 숲으로 가기 →';
+  btn.disabled=false;
 }
+
 function goHome(){
-  document.getElementById('home-forest-title').textContent=(userName||'나')+'의 감정 숲';
+  var n=userName||'나';
+  var isOcean=spaceType==='ocean';
+  document.getElementById('home-title').textContent=n+'의 '+(isOcean?'감정 어항':'감정 숲');
   showHome();
 }
-function clearMission(cardId,btn,fruit,name){
-  if(btn.classList.contains('done')) return;
-  btn.classList.add('done');btn.disabled=true;
-  btn.textContent=fruit+' '+name+' 획득!';
-  document.getElementById(cardId).classList.add('cleared');
-  seedCount++;clearedCount++;
-  document.getElementById('mis-seed-count').textContent=seedCount;
-  if(clearedCount>=6) document.getElementById('mis-cleared-msg').style.display='block';
+
+function clearMis(id,btn,p){
+  if(btn.disabled&&btn.textContent.includes('완료')) return;
+  btn.textContent='완료! +'+p+'p';
+  btn.style.background='#f5faf3';btn.style.color='#8aaa7a';btn.disabled=true;
+  document.getElementById(id).style.borderColor='#c8ddc0';document.getElementById(id).style.background='#f5faf3';
+  pts+=p;document.getElementById('mis-pts').textContent=pts;
 }
 
-/* ── THREE.JS 공통 나무 생성 ── */
-function makeTree(THREE, x, z, h, r, toneIdx){
-  var palettes=[
-    [0x2d7a2d,0x3a8f3a,0x4aa04a],
-    [0x256e40,0x308050,0x3d9260],
-    [0x347a20,0x428a28,0x529a35]
-  ];
-  var cols=palettes[toneIdx%3];
+/* ── THREE.JS 공통 나무 ── */
+function makeTree(x,z,h,r,v){
+  var cols=v===0?[0x2d7a2d,0x3a8f3a,0x4aa04a]:v===1?[0x256e40,0x308050,0x3d9260]:[0x347a20,0x428a28,0x529a35];
   var g=new THREE.Group();
-  var trunkH=h*0.32;
-  var trunk=new THREE.Mesh(
-    new THREE.CylinderGeometry(r*0.14,r*0.18,trunkH,8),
-    new THREE.MeshLambertMaterial({color:0x8B5E3C})
-  );
-  trunk.position.y=trunkH/2;
-  g.add(trunk);
-  var layers=[
-    {y:trunkH+h*0.10, rr:r*1.05, hh:h*0.36, c:cols[0]},
-    {y:trunkH+h*0.30, rr:r*0.80, hh:h*0.30, c:cols[1]},
-    {y:trunkH+h*0.50, rr:r*0.55, hh:h*0.25, c:cols[2]},
-  ];
-  layers.forEach(function(l){
-    var cone=new THREE.Mesh(
-      new THREE.ConeGeometry(l.rr,l.hh,10),
-      new THREE.MeshLambertMaterial({color:l.c})
-    );
-    cone.position.y=l.y;
-    g.add(cone);
+  var th=h*0.32;
+  var trk=new THREE.Mesh(new THREE.CylinderGeometry(r*.14,r*.18,th,8),new THREE.MeshLambertMaterial({color:0x8B5E3C}));
+  trk.position.y=th/2;g.add(trk);
+  [{y:th+h*.10,r:r*1.05,h:h*.36,c:cols[0]},{y:th+h*.30,r:r*.80,h:h*.30,c:cols[1]},{y:th+h*.50,r:r*.55,h:h*.25,c:cols[2]}].forEach(function(l){
+    var c=new THREE.Mesh(new THREE.ConeGeometry(l.r,l.h,10),new THREE.MeshLambertMaterial({color:l.c}));
+    c.position.y=l.y;g.add(c);
   });
-  g.position.set(x,0,z);
-  return g;
+  g.position.set(x,0,z);return g;
 }
 
-/* ── SPLASH THREE.JS ── */
+/* ── SPLASH ── */
 (function(){
   var canvas=document.getElementById('three-canvas');
-  var W=canvas.offsetWidth||window.innerWidth;
-  var H=Math.round(W*0.75);
-  canvas.style.height=H+'px';
+  var W=window.innerWidth;var H=window.innerHeight;
   var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true});
   renderer.setSize(W,H);renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-  renderer.shadowMap.enabled=true;
-
-  var scene=new THREE.Scene();
-  scene.background=new THREE.Color(0xa8d8ee);
-  scene.fog=new THREE.FogExp2(0x7ab870,0.038);
-
-  var camera=new THREE.PerspectiveCamera(52,W/H,0.1,100);
-  camera.position.set(0,3.5,12);camera.lookAt(0,2,0);
-
+  var scene=new THREE.Scene();scene.background=new THREE.Color(0xa8d8ee);scene.fog=new THREE.FogExp2(0x7ab870,0.038);
+  var camera=new THREE.PerspectiveCamera(65,W/H,0.1,100);camera.position.set(0,4,13);camera.lookAt(0,2,0);
   scene.add(new THREE.AmbientLight(0xd0eec8,1.4));
-  var sun=new THREE.DirectionalLight(0xfff0c8,2.0);
-  sun.position.set(6,12,6);sun.castShadow=true;scene.add(sun);
-  var fill=new THREE.HemisphereLight(0x88cc88,0xd0c898,0.7);scene.add(fill);
-
-  /* 하늘 구름 */
-  function mkCloud(x,y,z){
-    var g=new THREE.Group();
-    [[0,0,0,1.2],[1.2,0.3,0,1.0],[-1,0.2,0,0.9],[0.4,-0.2,0.6,0.85]].forEach(function(c){
-      var m=new THREE.Mesh(new THREE.SphereGeometry(c[3],8,8),new THREE.MeshLambertMaterial({color:0xffffff}));
-      m.position.set(c[0],c[1],c[2]);g.add(m);
-    });
-    g.position.set(x,y,z);g.scale.set(1,0.55,0.7);return g;
-  }
+  var sun=new THREE.DirectionalLight(0xfff0c8,2.0);sun.position.set(6,12,6);sun.castShadow=true;scene.add(sun);
+  scene.add(new THREE.HemisphereLight(0x88cc88,0xd0c898,0.7));
+  function mkCloud(x,y,z){var g=new THREE.Group();[[0,0,0,1.2],[1.2,.3,0,1.0],[-1,.2,0,.9]].forEach(function(c){var m=new THREE.Mesh(new THREE.SphereGeometry(c[3],8,8),new THREE.MeshLambertMaterial({color:0xffffff}));m.position.set(c[0],c[1],c[2]);g.add(m);});g.position.set(x,y,z);g.scale.set(1,.55,.7);return g;}
   [[-5,8,-4],[-1,9,-6],[4,7.5,-5]].forEach(function(p){scene.add(mkCloud(p[0],p[1],p[2]));});
-
-  /* 땅 */
-  var gnd=new THREE.Mesh(new THREE.PlaneGeometry(40,40),new THREE.MeshLambertMaterial({color:0x4a9a30}));
-  gnd.rotation.x=-Math.PI/2;gnd.receiveShadow=true;scene.add(gnd);
-  var gnd2=new THREE.Mesh(new THREE.PlaneGeometry(40,40),new THREE.MeshLambertMaterial({color:0x5aaa3a}));
-  gnd2.rotation.x=-Math.PI/2;gnd2.position.y=0.01;
-  gnd2.scale.set(0.7,0.7,1);scene.add(gnd2);
-
-  var trees=[
-    makeTree(THREE,-4.5,0.5,5,1.2,0),
-    makeTree(THREE,-1.5,-1.5,6,1.45,1),
-    makeTree(THREE,1.8,-0.8,4.5,1.05,2),
-    makeTree(THREE,4.2,0,5.5,1.3,0),
-    makeTree(THREE,-7,2,3.8,0.85,1),
-    makeTree(THREE,6.5,1.5,4,0.9,2),
-    makeTree(THREE,-2.5,3.5,3.2,0.7,0),
-    makeTree(THREE,3,4,2.8,0.65,1),
-  ];
+  var gnd=new THREE.Mesh(new THREE.PlaneGeometry(40,40),new THREE.MeshLambertMaterial({color:0x4a9a30}));gnd.rotation.x=-Math.PI/2;scene.add(gnd);
+  var trees=[makeTree(-4.5,.5,5,1.2,0),makeTree(-1.5,-1.5,6,1.45,1),makeTree(1.8,-.8,4.5,1.05,2),makeTree(4.2,0,5.5,1.3,0),makeTree(-7,2,3.8,.85,1),makeTree(6.5,1.5,4,.9,2),makeTree(-2.5,3.5,3.2,.7,0),makeTree(3,4,2.8,.65,1)];
   trees.forEach(function(t){scene.add(t);});
-
-  /* 꽃 */
-  var flColors=[0xff88aa,0xffcc44,0xff99bb,0xffffff,0xffaa55];
-  [[-2.5,0.15,0.5],[0.5,0.15,1],[2.2,0.15,0.3],[-1,0.15,2],[1.5,0.15,2.2],[-3.5,0.15,2]].forEach(function(p,i){
-    var f=new THREE.Mesh(new THREE.SphereGeometry(0.14,6,6),new THREE.MeshLambertMaterial({color:flColors[i%5]}));
-    f.position.set(p[0],p[1],p[2]);scene.add(f);
-  });
-
-  var t=0;
-  (function loop(){requestAnimationFrame(loop);t+=0.007;
-    camera.position.x=Math.sin(t*0.25)*1.2;
-    camera.position.y=3.5+Math.sin(t*0.18)*0.2;
-    camera.lookAt(0,2,0);
-    trees.forEach(function(tr,i){tr.rotation.z=Math.sin(t*0.5+i*0.9)*0.016;});
-    renderer.render(scene,camera);
-  })();
+  var flC=[0xff88aa,0xffcc44,0xff99bb,0xffffff,0xffaa55];
+  [[-2.5,.15,.5],[.5,.15,1],[2.2,.15,.3],[-1,.15,2],[1.5,.15,2.2]].forEach(function(p,i){var f=new THREE.Mesh(new THREE.SphereGeometry(.14,6,6),new THREE.MeshLambertMaterial({color:flC[i%5]}));f.position.set(p[0],p[1],p[2]);scene.add(f);});
+  var t=0;(function loop(){requestAnimationFrame(loop);t+=.007;camera.position.x=Math.sin(t*.25)*1.2;camera.position.y=3.5+Math.sin(t*.18)*.2;camera.lookAt(0,2,0);trees.forEach(function(tr,i){tr.rotation.z=Math.sin(t*.5+i*.9)*.016;});renderer.render(scene,camera);})();
 })();
 
-/* ── HOME THREE.JS ── */
+/* ── HOME FOREST ── */
 function initHomeForest(){
   var canvas=document.getElementById('home-canvas');
-  var W=canvas.offsetWidth||window.innerWidth;
-  var H=Math.round(W*0.65);
+  var W=window.innerWidth;var H=Math.round(W*0.62);
   canvas.style.height=H+'px';
   var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true});
   renderer.setSize(W,H);renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-  renderer.shadowMap.enabled=true;
-
-  var scene=new THREE.Scene();
-  scene.background=new THREE.Color(0xa8d8ee);
-  scene.fog=new THREE.FogExp2(0x6aaa50,0.048);
-
-  var camera=new THREE.PerspectiveCamera(58,W/H,0.1,80);
-  camera.position.set(0,3,9);camera.lookAt(0,1.5,0);
-
+  var scene=new THREE.Scene();scene.background=new THREE.Color(0xa8d8ee);scene.fog=new THREE.FogExp2(0x6aaa50,0.048);
+  var camera=new THREE.PerspectiveCamera(58,W/H,0.1,80);camera.position.set(0,3,9);camera.lookAt(0,1.5,0);
   scene.add(new THREE.AmbientLight(0xc8e8c0,1.5));
-  var sun=new THREE.DirectionalLight(0xffeea0,2.2);
-  sun.position.set(4,10,5);sun.castShadow=true;scene.add(sun);
+  var sun=new THREE.DirectionalLight(0xffeea0,2.2);sun.position.set(4,10,5);sun.castShadow=true;scene.add(sun);
   scene.add(new THREE.HemisphereLight(0x88cc70,0xd8c890,0.8));
-
-  /* 구름 */
-  function mkC(x,y,z){
-    var g=new THREE.Group();
-    [[0,0,0,0.9],[0.9,0.2,0,0.75],[-0.8,0.15,0,0.7]].forEach(function(c){
-      var m=new THREE.Mesh(new THREE.SphereGeometry(c[3],7,7),new THREE.MeshLambertMaterial({color:0xffffff}));
-      m.position.set(c[0],c[1],c[2]);g.add(m);
-    });
-    g.position.set(x,y,z);g.scale.set(1,0.5,0.65);return g;
-  }
+  function mkC(x,y,z){var g=new THREE.Group();[[0,0,0,.9],[.9,.2,0,.75],[-.8,.15,0,.7]].forEach(function(c){var m=new THREE.Mesh(new THREE.SphereGeometry(c[3],7,7),new THREE.MeshLambertMaterial({color:0xffffff}));m.position.set(c[0],c[1],c[2]);g.add(m);});g.position.set(x,y,z);g.scale.set(1,.5,.65);return g;}
   [[-4,6.5,-3],[1.5,7,-4]].forEach(function(p){scene.add(mkC(p[0],p[1],p[2]));});
-
-  var gnd=new THREE.Mesh(new THREE.PlaneGeometry(30,30),new THREE.MeshLambertMaterial({color:0x4a9830}));
-  gnd.rotation.x=-Math.PI/2;gnd.receiveShadow=true;scene.add(gnd);
-
-  var htrees=[
-    makeTree(THREE,-3.5,0.2,4.8,1.15,0),
-    makeTree(THREE,-1,-1.2,5.8,1.4,1),
-    makeTree(THREE,1.6,-0.6,4.2,1.05,2),
-    makeTree(THREE,3.8,0,5.0,1.25,0),
-    makeTree(THREE,-5.5,2,3.5,0.8,1),
-    makeTree(THREE,5.5,1.5,3.8,0.85,2),
-    makeTree(THREE,0.2,3.5,2.8,0.62,0),
-  ];
-  htrees.forEach(function(t){scene.add(t);});
-
+  var gnd=new THREE.Mesh(new THREE.PlaneGeometry(30,30),new THREE.MeshLambertMaterial({color:0x4a9830}));gnd.rotation.x=-Math.PI/2;scene.add(gnd);
+  var ht=[makeTree(-3.5,.2,4.8,1.15,0),makeTree(-1,-1.2,5.8,1.4,1),makeTree(1.6,-.6,4.2,1.05,2),makeTree(3.8,0,5.0,1.25,0),makeTree(-5.5,2,3.5,.8,1),makeTree(5.5,1.5,3.8,.85,2),makeTree(.2,3.5,2.8,.62,0)];
+  ht.forEach(function(t){scene.add(t);});
   var fc=[0xff88aa,0xffcc44,0xff99bb,0xffffff,0xffaa55];
-  [[-2,0.15,0.3],[0.6,0.15,0.8],[2.4,0.15,0.2],[-1.2,0.15,1.5],[1.8,0.15,1.8]].forEach(function(p,i){
-    var f=new THREE.Mesh(new THREE.SphereGeometry(0.13,6,6),new THREE.MeshLambertMaterial({color:fc[i%5]}));
-    f.position.set(p[0],p[1],p[2]);scene.add(f);
-  });
-
-  var t=0;
-  (function loop(){requestAnimationFrame(loop);t+=0.007;
-    camera.position.x=Math.sin(t*0.2)*0.7;
-    camera.lookAt(0,1.5,0);
-    htrees.forEach(function(tr,i){tr.rotation.z=Math.sin(t*0.5+i*0.8)*0.015;});
-    renderer.render(scene,camera);
-  })();
+  [[-2,.15,.3],[.6,.15,.8],[2.4,.15,.2],[-1.2,.15,1.5],[1.8,.15,1.8]].forEach(function(p,i){var f=new THREE.Mesh(new THREE.SphereGeometry(.13,6,6),new THREE.MeshLambertMaterial({color:fc[i%5]}));f.position.set(p[0],p[1],p[2]);scene.add(f);});
+  var t=0;(function loop(){requestAnimationFrame(loop);t+=.007;camera.position.x=Math.sin(t*.2)*.7;camera.lookAt(0,1.5,0);ht.forEach(function(tr,i){tr.rotation.z=Math.sin(t*.5+i*.8)*.015;});renderer.render(scene,camera);})();
 }
 </script>
