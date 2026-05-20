@@ -1,3 +1,4 @@
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -592,6 +593,70 @@ html,body{
 .toast{position:fixed;left:18px;right:18px;bottom:calc(86px + env(safe-area-inset-bottom));background:rgba(42,48,32,.92);color:#fff;border-radius:18px;padding:14px 16px;text-align:center;font-size:14px;z-index:30;opacity:0;transform:translateY(12px);pointer-events:none;transition:all .25s;}
 .toast.show{opacity:1;transform:translateY(0);}
 
+
+
+/* ── 2026 온보딩 스플래시 리디자인: 감성적이지만 올드하지 않게 ── */
+#splash{
+  background:radial-gradient(circle at 50% 42%,#395946 0%,#1f3b2f 34%,#12261f 100%) !important;
+  overflow:hidden;
+}
+#splash-canvas{display:none !important;}
+.splash-art{position:absolute;inset:0;overflow:hidden;}
+.splash-art .moon{
+  position:absolute;right:44px;top:max(54px,calc(env(safe-area-inset-top) + 28px));
+  width:38px;height:38px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#fff7cf 0%,#f1dca4 68%,#d5b66f 100%);
+  box-shadow:0 0 32px rgba(246,222,159,.34);
+  opacity:.95;
+}
+.forest-layer{position:absolute;left:-10%;right:-10%;bottom:33%;height:34%;opacity:.9;}
+.forest-layer:before,.forest-layer:after{content:'';position:absolute;inset:0;background-repeat:repeat-x;background-size:95px 100%;}
+.forest-layer.back{bottom:36%;opacity:.34;filter:blur(.3px);}
+.forest-layer.back:before{background-image:radial-gradient(ellipse at 50% 100%,#5d7f68 0 42%,transparent 43%);background-size:86px 100%;}
+.forest-layer.mid{bottom:29%;opacity:.54;}
+.forest-layer.mid:before{background-image:radial-gradient(ellipse at 50% 100%,#44664f 0 48%,transparent 49%);background-size:78px 100%;transform:translateX(28px);}
+.forest-layer.front{bottom:23%;opacity:.78;}
+.forest-layer.front:before{background-image:radial-gradient(ellipse at 50% 100%,#294735 0 52%,transparent 53%);background-size:96px 100%;}
+.forest-layer.front:after{background-image:radial-gradient(ellipse at 50% 100%,#1d3328 0 48%,transparent 49%);background-size:122px 100%;transform:translateX(55px);opacity:.7;}
+.mist{position:absolute;left:50%;transform:translateX(-50%);border-radius:999px;filter:blur(18px);pointer-events:none;}
+.mist-a{width:72%;height:80px;bottom:30%;background:rgba(184,222,180,.22);}
+.mist-b{width:46%;height:70px;bottom:36%;background:rgba(211,238,188,.20);}
+.pond-glow{
+  position:absolute;left:50%;bottom:27%;transform:translateX(-50%);
+  width:68%;height:54px;border-radius:50%;
+  background:radial-gradient(ellipse at 50% 50%,rgba(134,177,167,.8) 0%,rgba(71,119,125,.62) 55%,rgba(31,66,69,.18) 72%,transparent 75%);
+  box-shadow:0 -28px 80px rgba(142,198,140,.22);
+}
+.seedling{position:absolute;left:50%;bottom:29.5%;width:80px;height:112px;transform:translateX(-50%);}
+.seedling .stem{position:absolute;left:50%;bottom:14px;width:5px;height:62px;border-radius:999px;background:linear-gradient(#aee986,#5dae5e);transform:translateX(-50%);box-shadow:0 0 24px rgba(151,224,117,.45);}
+.seedling .leaf{position:absolute;bottom:58px;width:34px;height:20px;border-radius:100% 0 100% 0;background:linear-gradient(135deg,#b8f08b,#70c66c);box-shadow:0 0 18px rgba(153,225,120,.26);}
+.seedling .leaf.left{left:8px;transform:rotate(-28deg);}
+.seedling .leaf.right{right:8px;transform:scaleX(-1) rotate(-28deg);}
+.seedling .spark{position:absolute;width:4px;height:4px;border-radius:50%;background:#d5f59a;box-shadow:0 0 12px #c8f083;animation:floatSpark 3.8s ease-in-out infinite;}
+.seedling .s1{left:4px;top:36px;} .seedling .s2{right:6px;top:22px;animation-delay:.9s;} .seedling .s3{left:55px;top:62px;animation-delay:1.6s;}
+@keyframes floatSpark{0%,100%{opacity:.25;transform:translateY(4px)}50%{opacity:1;transform:translateY(-8px)}}
+#splash .splash-gradient{
+  background:linear-gradient(to top,rgba(18,38,31,.96) 0%,rgba(18,38,31,.82) 24%,rgba(18,38,31,.24) 56%,transparent 78%) !important;
+}
+#splash .splash-content{
+  top:max(64px,calc(env(safe-area-inset-top) + 44px));
+  bottom:auto;
+  padding:0 28px;
+}
+#splash .splash-pill{display:none;}
+#splash .splash-title{
+  font-size:34px;letter-spacing:8px;font-weight:700;color:#f3f0de;
+  margin-bottom:10px;text-shadow:0 8px 28px rgba(0,0,0,.26);
+}
+#splash .splash-slogan{
+  color:rgba(233,239,214,.76);font-size:13px;line-height:1.7;margin-bottom:0;
+}
+#splash .splash-btn{
+  position:fixed;left:24px;right:24px;bottom:calc(24px + env(safe-area-inset-bottom));
+  width:auto;background:linear-gradient(135deg,#dce9c5,#9fca83) !important;
+  color:#183326;font-weight:700;box-shadow:0 18px 34px rgba(10,20,14,.24);
+}
+
 </style>
 
 <div class="phone">
@@ -599,6 +664,23 @@ html,body{
 <!-- ── SPLASH ── -->
 <div class="screen active" id="splash">
   <canvas id="splash-canvas"></canvas>
+  <div class="splash-art" aria-hidden="true">
+    <div class="moon"></div>
+    <div class="mist mist-a"></div>
+    <div class="mist mist-b"></div>
+    <div class="forest-layer back"></div>
+    <div class="forest-layer mid"></div>
+    <div class="forest-layer front"></div>
+    <div class="pond-glow"></div>
+    <div class="seedling">
+      <span class="stem"></span>
+      <span class="leaf left"></span>
+      <span class="leaf right"></span>
+      <span class="spark s1"></span>
+      <span class="spark s2"></span>
+      <span class="spark s3"></span>
+    </div>
+  </div>
   <div class="splash-gradient"></div>
   <div class="splash-content">
     <div class="splash-pill">EMOTION · FOREST · CARE</div>
@@ -613,9 +695,9 @@ html,body{
   <div class="ob-screen">
     <div class="ob-header">
       <div class="ob-progress">
-        <div class="ob-dot done"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div>
+        <div class="ob-dot done"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div>
       </div>
-      <div class="ob-eyebrow">STEP 1 OF 5</div>
+      <div class="ob-eyebrow">STEP 1 OF 4</div>
       <div class="ob-q">뭐라고 불러드릴까요?</div>
       <div class="ob-sub">이름을 입력하면 나만의 감정 공간이 만들어져요</div>
     </div>
@@ -628,35 +710,7 @@ html,body{
     <div class="ob-footer">
       <div class="ob-nav">
         <button class="ob-back" onclick="go('splash')">←</button>
-        <button class="ob-next" id="name-next" disabled onclick="go('ob-age')">계속하기</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── OB: 연령대 ── -->
-<div class="screen" id="ob-age">
-  <div class="ob-screen">
-    <div class="ob-header">
-      <div class="ob-progress">
-        <div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot"></div><div class="ob-dot"></div><div class="ob-dot"></div>
-      </div>
-      <div class="ob-eyebrow">STEP 2 OF 5</div>
-      <div class="ob-q">어떤 연령대인가요?</div>
-      <div class="ob-sub">나에게 맞는 감정 언어로 공간을 꾸며드릴게요</div>
-    </div>
-    <div class="ob-body">
-      <div class="age-grid">
-        <div class="age-card" onclick="selOne(this,'.age-card','age-next')"><div class="age-num">10대</div><div class="age-desc">학교·친구 관계</div></div>
-        <div class="age-card" onclick="selOne(this,'.age-card','age-next')"><div class="age-num">20대</div><div class="age-desc">진로·불안·자기이해</div></div>
-        <div class="age-card" onclick="selOne(this,'.age-card','age-next')"><div class="age-num">30대</div><div class="age-desc">번아웃·일과 삶의 균형</div></div>
-        <div class="age-card" onclick="selOne(this,'.age-card','age-next')"><div class="age-num">40대</div><div class="age-desc">차분한 감정 정리</div></div>
-      </div>
-    </div>
-    <div class="ob-footer">
-      <div class="ob-nav">
-        <button class="ob-back" onclick="go('ob-name')">←</button>
-        <button class="ob-next" id="age-next" disabled onclick="go('ob-space')">계속하기</button>
+        <button class="ob-next" id="name-next" disabled onclick="go('ob-space')">계속하기</button>
       </div>
     </div>
   </div>
@@ -667,9 +721,9 @@ html,body{
   <div class="ob-screen">
     <div class="ob-header">
       <div class="ob-progress">
-        <div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot"></div><div class="ob-dot"></div>
+        <div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot"></div><div class="ob-dot"></div>
       </div>
-      <div class="ob-eyebrow">STEP 3 OF 5</div>
+      <div class="ob-eyebrow">STEP 2 OF 4</div>
       <div class="ob-q">어떤 공간에서<br>감정을 키울까요?</div>
       <div class="ob-sub">기록할수록 공간이 천천히 채워져요</div>
     </div>
@@ -691,7 +745,7 @@ html,body{
     </div>
     <div class="ob-footer">
       <div class="ob-nav">
-        <button class="ob-back" onclick="go('ob-age')">←</button>
+        <button class="ob-back" onclick="go('ob-name')">←</button>
         <button class="ob-next" id="space-next" disabled onclick="go('ob-emotion')">계속하기</button>
       </div>
     </div>
@@ -703,9 +757,9 @@ html,body{
   <div class="ob-screen">
     <div class="ob-header">
       <div class="ob-progress">
-        <div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot"></div>
+        <div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot"></div>
       </div>
-      <div class="ob-eyebrow">STEP 4 OF 5</div>
+      <div class="ob-eyebrow">STEP 3 OF 4</div>
       <div class="ob-q">지금 내 마음은<br>어떤가요?</div>
       <div class="ob-sub">솔직하게 골라주세요. 어떤 감정이든 괜찮아요</div>
     </div>
@@ -734,9 +788,9 @@ html,body{
   <div class="ob-screen">
     <div class="ob-header">
       <div class="ob-progress">
-        <div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot done"></div>
+        <div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot done"></div><div class="ob-dot done"></div>
       </div>
-      <div class="ob-eyebrow">STEP 5 OF 5</div>
+      <div class="ob-eyebrow">STEP 4 OF 4</div>
       <div class="ob-q" id="plant-q">첫 씨앗을 심어볼까요?</div>
       <div class="ob-sub" id="plant-sub">화분을 탭해서 시작해요</div>
     </div>
